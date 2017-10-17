@@ -1,7 +1,7 @@
 # Refugee-Crisis
 This is documentation of a System Dynamics Model of the Refugee Crisis
 
-There are 6 Word documents with descriptions of the programs using in the Refugee Crisis study.
+There are 6 Word documents with descriptions of the programs used in the Refugee Crisis study.
 
 There are 3 Vensim models that were used to develop the prototype model and produce various graphs
 for the Word documents.
