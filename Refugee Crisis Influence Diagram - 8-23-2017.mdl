@@ -1,0 +1,525 @@
+{UTF-8}
+Refugees That Have Immigrated=A FUNCTION OF(Refugees That Have Immigrated,Immigration Officers\
+		,Refugees) ~~|
+Refugees That Have Immigrated=
+	~	
+	~		|
+
+Border Crossing Attempts  = A FUNCTION OF( Border Crossing Resources,Investment in Border Control\
+		,Refugees,Successful Border Crossings,Unsuccessful Border Crossings) ~~|
+Border Crossing Attempts=
+	~	
+	~		|
+
+Refugees  = A FUNCTION OF( Population in Foreign Country,Refugees That Have Immigrated\
+		,Unaffected Population)
+	~	
+	~		|
+
+Births  = A FUNCTION OF( Population in Foreign Country)
+	~	
+	~		|
+
+Deaths From Disease  = A FUNCTION OF( Population in Foreign Country,Population Without Disease\
+		)
+	~	
+	~		|
+
+Investment in Health Services  = A FUNCTION OF( Investment Available,Population in Foreign Country\
+		,Population Without Disease)
+	~	
+	~		|
+
+Unaffected Population  = A FUNCTION OF( Population in Safe Havens,Population with Enough Food\
+		,Population with Jobs,Population Without Disease)
+	~	
+	~		|
+
+Health Services  = A FUNCTION OF( Investment in Health Services)
+	~	
+	~		|
+
+Population in Foreign Country  = A FUNCTION OF( Births,Deaths by Natural Causes,Deaths From Disease\
+		,Deaths from Starvation,Deaths from Violence,Refugees)
+	~	
+	~		|
+
+Population Without Disease  = A FUNCTION OF( Health Services,Population in Safe Havens\
+		)
+	~	
+	~		|
+
+Investment Available  = A FUNCTION OF( Investment in Border Control,Investment in Diplomacy\
+		,Investment in Economic Development,Investment in Food Aid,Investment in Health Services\
+		,Investment in Immigration,Investment in Peacekeeping,Population in Foreign Country\
+		,Unaffected Population) ~~|
+Investment Available=
+	~	
+	~		|
+
+Border Crossing Resources  = A FUNCTION OF( Refugees)
+	~	
+	~		|
+
+Businesses  = A FUNCTION OF( Investment in Economic Development,Population in Safe Havens\
+		,Violence)
+	~	
+	~		|
+
+Deaths by Natural Causes  = A FUNCTION OF( Population in Foreign Country)
+	~	
+	~		|
+
+Deaths from Starvation  = A FUNCTION OF( Population in Foreign Country,Population with Enough Food\
+		)
+	~	
+	~		|
+
+Deaths from Unsuccessful Border Crossings=A FUNCTION OF(Deaths from Unsuccessful Border Crossings\
+		,Unsuccessful Border Crossings) ~~|
+Deaths from Unsuccessful Border Crossings=
+	~	
+	~		|
+
+Deaths from Violence  = A FUNCTION OF( Population in Foreign Country,Population in Safe Havens\
+		)
+	~	
+	~		|
+
+Diplomatic Effort  = A FUNCTION OF( Investment in Diplomacy) ~~|
+Diplomatic Effort=
+	~	
+	~		|
+
+Investment in Immigration  = A FUNCTION OF( Refugees,Investment Available)
+	~	
+	~		|
+
+Immigration Officers  = A FUNCTION OF( Investment in Immigration)
+	~	
+	~		|
+
+Investment in Diplomacy  = A FUNCTION OF( Population in Foreign Country,Population in Safe Havens\
+		,Investment Available)
+	~	
+	~		|
+
+Unsuccessful Border Crossings  = A FUNCTION OF( Border Crossing Attempts,Border Crossing Resources\
+		)
+	~	
+	~		|
+
+Population with Jobs  = A FUNCTION OF( Businesses)
+	~	
+	~		|
+
+Successful Border Crossings  = A FUNCTION OF( Border Crossing Attempts)
+	~	
+	~		|
+
+Investment in Peacekeeping  = A FUNCTION OF( Population in Foreign Country,Population in Safe Havens\
+		,Investment Available)
+	~	
+	~		|
+
+Peackeepers  = A FUNCTION OF( Investment in Peacekeeping)
+	~	
+	~		|
+
+Safe Havens  = A FUNCTION OF( Peackeepers,Violence)
+	~	
+	~		|
+
+Food  = A FUNCTION OF( Violence)
+	~	
+	~		|
+
+Food Aid  = A FUNCTION OF( Investment in Food Aid,Violence)
+	~	
+	~		|
+
+Investment in Border Control  = A FUNCTION OF( Deaths from Unsuccessful Border Crossings\
+		,Investment Available)
+	~	
+	~		|
+
+Investment in Economic Development  = A FUNCTION OF( Population in Foreign Country,Population with Jobs\
+		,Investment Available)
+	~	
+	~		|
+
+Investment in Food Aid  = A FUNCTION OF( Population in Foreign Country,Population with Enough Food\
+		,Investment Available) ~~|
+Investment in Food Aid=
+	~	
+	~		|
+
+Population in Safe Havens  = A FUNCTION OF( Safe Havens)
+	~	
+	~		|
+
+Population with Enough Food  = A FUNCTION OF( Food,Food Aid)
+	~	
+	~		|
+
+Violence  = A FUNCTION OF( Diplomatic Effort,Peackeepers)
+	~	
+	~		|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 100
+	~	Month
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 0
+	~	Month
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 
+        TIME STEP
+	~	Month [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 1
+	~	Month [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Refugees
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|96,96,100,0
+10,1,Population in Foreign Country,277,492,53,19,8,3,0,0,0,0,0,0
+10,2,Unaffected Population,440,612,35,19,8,3,0,0,0,0,0,0
+10,3,Refugees That Have Immigrated,933,457,57,19,8,3,0,0,0,0,0,0
+10,4,Deaths from Unsuccessful Border Crossings,825,72,66,28,8,3,0,0,0,0,0,0
+10,5,Refugees,604,360,30,11,8,3,0,0,0,0,0,0
+10,6,Border Crossing Resources,176,293,53,19,8,3,0,0,0,0,0,0
+10,7,Immigration Officers,1042,588,38,19,8,3,0,0,0,0,0,0
+10,8,Population with Enough Food,184,701,49,19,8,3,0,0,0,0,0,0
+10,9,Population in Safe Havens,397,746,58,19,8,3,0,0,0,0,0,0
+10,10,Population with Jobs,612,676,49,19,8,3,0,0,0,0,0,0
+10,11,Food,165,833,19,11,8,3,0,0,0,0,0,0
+10,12,Food Aid,271,878,32,11,8,3,0,0,0,0,0,0
+10,13,Violence,452,955,29,11,8,3,0,0,0,0,0,0
+10,14,Peackeepers,671,946,41,11,8,3,0,0,0,0,0,0
+10,15,Diplomatic Effort,528,1043,36,21,8,131,0,0,0,0,0,0
+10,16,Businesses,857,790,35,11,8,3,0,0,0,0,0,0
+10,17,Safe Havens,537,834,40,11,8,3,0,0,0,0,0,0
+1,18,1,5,1,0,0,0,0,64,0,-1--1--1,,1|(389,480)|
+1,19,2,5,1,0,0,0,0,64,0,-1--1--1,,1|(565,536)|
+1,20,8,2,1,0,0,0,0,64,0,-1--1--1,,1|(276,631)|
+1,21,9,2,1,0,0,0,0,64,0,-1--1--1,,1|(382,694)|
+1,22,10,2,1,0,0,0,0,64,0,-1--1--1,,1|(544,670)|
+1,23,7,3,1,0,0,0,0,64,0,-1--1--1,,1|(1032,519)|
+1,24,5,3,1,0,0,0,0,64,0,-1--1--1,,1|(652,410)|
+1,25,11,8,1,0,0,0,0,64,0,-1--1--1,,1|(140,801)|
+1,26,12,8,1,0,0,0,0,64,0,-1--1--1,,1|(244,847)|
+1,27,13,11,1,0,0,0,0,64,0,-1--1--1,,1|(285,1033)|
+1,28,13,12,1,0,0,0,0,64,0,-1--1--1,,1|(371,930)|
+1,29,13,17,1,0,0,0,0,64,0,-1--1--1,,1|(496,919)|
+1,30,13,16,1,0,0,0,0,64,0,-1--1--1,,1|(621,901)|
+1,31,14,13,1,0,0,0,0,64,0,-1--1--1,,1|(575,979)|
+1,32,15,13,1,0,0,0,0,64,0,-1--1--1,,1|(479,1002)|
+1,33,17,9,1,0,0,0,0,64,0,-1--1--1,,1|(452,827)|
+10,34,Border Crossing Attempts,411,238,75,20,8,131,0,0,0,0,0,0
+1,35,6,34,1,0,0,0,0,64,0,-1--1--1,,1|(264,231)|
+1,36,5,6,1,0,0,0,0,64,0,-1--1--1,,1|(417,376)|
+10,37,Investment in Border Control,377,119,54,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,38,Successful Border Crossings,693,287,58,19,8,3,0,0,0,0,0,0
+1,39,34,38,1,0,0,0,0,64,0,-1--1--1,,1|(539,297)|
+10,40,Investment in Food Aid,271,973,47,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,41,40,12,1,0,0,0,0,64,0,-1--1--1,,1|(258,941)|
+1,42,16,10,1,0,0,0,0,64,0,-1--1--1,,1|(753,704)|
+12,43,0,881,482,5,11,8,7,0,0,-1,0,0,0
+s
+12,44,0,1014,470,5,11,8,7,0,0,-1,0,0,0
+s
+12,45,0,1047,629,5,11,8,7,0,0,-1,0,0,0
+s
+12,46,0,659,695,5,11,8,7,0,0,-1,0,0,0
+s
+12,47,0,876,818,5,11,8,7,0,0,-1,0,0,0
+s
+12,48,0,820,830,6,11,8,7,0,0,-1,0,0,0
+o
+12,49,0,502,965,6,11,8,7,0,0,-1,0,0,0
+o
+12,50,0,758,969,5,11,8,7,0,0,-1,0,0,0
+s
+12,51,0,573,1056,5,11,8,7,0,0,-1,0,0,0
+s
+12,52,0,457,994,6,11,8,7,0,0,-1,0,0,0
+o
+12,53,0,292,909,6,11,8,7,0,0,-1,0,0,0
+o
+12,54,0,245,900,5,11,8,7,0,0,-1,0,0,0
+s
+12,55,0,176,852,6,11,8,7,0,0,-1,0,0,0
+o
+12,56,0,389,779,5,11,8,7,0,0,-1,0,0,0
+s
+12,57,0,515,859,6,11,8,7,0,0,-1,0,0,0
+o
+12,58,0,182,743,5,11,8,7,0,0,-1,0,0,0
+s
+12,59,0,131,738,5,11,8,7,0,0,-1,0,0,0
+s
+10,60,Deaths from Starvation,53,549,40,19,8,3,0,0,0,0,0,0
+10,61,Deaths from Violence,237,603,40,19,8,3,0,0,0,0,0,0
+1,62,8,60,1,0,0,0,0,64,0,-1--1--1,,1|(95,674)|
+1,63,1,60,1,0,0,0,0,64,0,-1--1--1,,1|(143,498)|
+1,64,60,1,1,0,0,0,0,64,0,-1--1--1,,1|(142,543)|
+1,65,61,1,1,0,0,0,0,64,0,-1--1--1,,1|(237,557)|
+1,66,1,61,1,0,0,0,0,64,0,-1--1--1,,1|(290,556)|
+1,67,9,61,1,0,0,0,0,64,0,-1--1--1,,1|(323,715)|
+1,68,5,1,1,0,0,0,0,64,0,-1--1--1,,1|(456,419)|
+1,69,3,5,1,0,0,0,0,64,0,-1--1--1,,1|(798,353)|
+1,70,5,34,1,0,0,0,0,64,0,-1--1--1,,1|(521,323)|
+12,71,0,631,115,6,11,8,7,0,0,-1,0,0,0
+o
+12,72,0,597,122,5,11,8,7,0,0,-1,0,0,0
+s
+12,73,0,625,312,5,11,8,7,0,0,-1,0,0,0
+s
+12,74,0,424,270,5,11,8,7,0,0,-1,0,0,0
+s
+12,75,0,325,205,5,11,8,7,0,0,-1,0,0,0
+s
+12,76,0,648,326,6,11,8,7,0,0,-1,0,0,0
+o
+12,77,0,337,459,6,11,8,7,0,0,-1,0,0,0
+o
+12,78,0,584,395,5,11,8,7,0,0,-1,0,0,0
+s
+12,79,0,618,401,6,11,8,7,0,0,-1,0,0,0
+o
+12,80,0,75,513,5,11,8,7,0,0,-1,0,0,0
+s
+12,81,0,223,530,6,11,8,7,0,0,-1,0,0,0
+o
+12,82,0,259,532,6,11,8,7,0,0,-1,0,0,0
+o
+12,83,0,289,586,5,11,8,7,0,0,-1,0,0,0
+s
+12,84,0,63,586,6,11,8,7,0,0,-1,0,0,0
+o
+12,85,0,238,634,6,11,8,7,0,0,-1,0,0,0
+o
+12,86,0,381,593,5,11,8,7,0,0,-1,0,0,0
+s
+12,87,0,388,641,5,11,8,7,0,0,-1,0,0,0
+s
+12,88,0,469,657,5,11,8,7,0,0,-1,0,0,0
+s
+12,89,0,213,326,15,5,8,135,0,0,-1,0,0,0
+s
+10,90,Investment in Immigration,914,668,47,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,91,90,7,1,0,0,0,0,64,0,-1--1--1,,1|(1013,645)|
+10,92,Investment in Economic Development,986,879,47,28,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,93,92,16,1,0,0,0,0,64,0,-1--1--1,,1|(891,854)|
+10,94,Investment in Diplomacy,676,1076,47,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,95,94,15,1,0,0,0,0,64,0,-1--1--1,,1|(609,1083)|
+10,96,Investment in Peacekeeping,816,933,49,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,97,96,14,1,0,0,0,0,64,0,-1--1--1,,1|(768,950)|
+10,98,Unsuccessful Border Crossings,652,156,66,19,8,3,0,0,0,0,0,0
+1,99,34,98,1,0,0,0,0,64,0,-1--1--1,,1|(433,192)|
+1,100,98,34,1,0,0,0,0,64,0,-1--1--1,,1|(602,191)|
+1,101,98,4,1,0,0,0,0,64,0,-1--1--1,,1|(682,97)|
+1,102,6,98,1,0,0,0,0,64,0,-1--1--1,,1|(252,143)|
+12,103,0,507,215,8,12,8,135,0,0,-1,0,0,0
+o
+12,104,0,727,55,5,11,8,7,0,0,-1,0,0,0
+s
+1,105,37,34,1,0,0,0,0,64,0,-1--1--1,,1|(363,167)|
+12,106,0,358,203,6,11,8,7,0,0,-1,0,0,0
+o
+10,107,Deaths by Natural Causes,82,383,58,19,8,3,0,0,0,0,0,0
+1,108,1,107,1,0,0,0,0,64,0,-1--1--1,,1|(193,409)|
+1,109,107,1,1,0,0,0,0,64,0,-1--1--1,,1|(118,422)|
+12,110,0,159,372,5,11,8,7,0,0,-1,0,0,0
+s
+12,111,0,211,464,6,11,8,7,0,0,-1,0,0,0
+o
+1,112,14,17,1,0,0,0,0,64,0,-1--1--1,,1|(643,873)|
+12,113,0,588,827,5,11,8,7,0,0,-1,0,0,0
+s
+1,114,9,16,1,0,0,0,0,64,0,-1--1--1,,1|(588,800)|
+12,115,0,806,784,5,11,8,7,0,0,-1,0,0,0
+s
+12,116,0,311,410,5,11,8,3,0,0,-1,0,0,0
+12,117,0,286,460,5,11,8,7,0,0,-1,0,0,0
+s
+10,118,Deaths From Disease,455,541,42,19,8,3,0,0,0,0,0,0
+1,119,1,118,1,0,0,0,0,64,0,-1--1--1,,1|(328,550)|
+1,120,118,1,1,0,0,0,0,64,0,-1--1--1,,1|(389,507)|
+12,121,0,340,507,6,11,8,7,0,0,-1,0,0,0
+o
+12,122,0,393,554,5,11,8,7,0,0,-1,0,0,0
+s
+10,123,Population Without Disease,631,554,61,19,8,3,0,0,0,0,0,0
+1,124,123,2,1,0,0,0,0,64,0,-1--1--1,,1|(572,597)|
+1,125,123,118,1,0,0,0,0,64,0,-1--1--1,,1|(563,511)|
+1,126,9,123,1,0,0,0,0,64,0,-1--1--1,,1|(501,705)|
+12,127,0,633,590,6,11,8,7,0,0,-1,0,0,0
+o
+12,128,0,491,502,6,11,8,7,0,0,-1,0,0,0
+o
+12,129,0,495,630,5,11,8,7,0,0,-1,0,0,0
+s
+12,130,0,328,428,5,11,8,7,0,0,-1,0,0,0
+s
+10,131,Health Services,780,526,49,11,8,3,0,0,0,0,0,0
+10,132,Investment in Health Services,856,602,55,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,133,132,131,1,0,0,0,0,64,0,-1--1--1,,1|(862,565)|
+1,134,131,123,1,0,0,0,0,64,0,-1--1--1,,1|(711,503)|
+12,135,0,640,514,5,11,8,7,0,0,-1,0,0,0
+s
+12,136,0,839,517,5,11,8,7,0,0,-1,0,0,0
+s
+10,137,Births,290,407,20,11,8,3,0,0,0,0,0,0
+1,138,137,1,1,0,0,0,0,64,0,-1--1--1,,1|(275,450)|
+1,139,1,137,1,0,0,0,0,64,0,-1--1--1,,1|(318,453)|
+1,140,38,34,1,0,0,0,0,64,0,-1--1--1,,1|(592,256)|
+12,141,0,505,252,5,11,8,7,0,0,-1,0,0,0
+s
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Investment
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|96,96,100,0
+10,1,Investment Available,601,267,51,18,8,131,0,0,0,0,0,0
+10,2,Investment in Border Control,378,427,49,19,8,3,0,0,0,0,0,0
+10,3,Investment in Food Aid,296,307,42,19,8,3,0,0,0,0,0,0
+10,4,Investment in Economic Development,542,475,43,28,8,3,0,0,0,0,0,0
+10,5,Unaffected Population,537,111,40,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,6,Population in Foreign Country,654,96,57,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,7,5,1,1,0,0,0,0,64,0,-1--1--1,,1|(569,153)|
+1,8,6,1,1,0,0,0,0,64,0,-1--1--1,,1|(633,185)|
+1,9,1,3,1,0,0,0,0,64,0,-1--1--1,,1|(492,302)|
+1,10,1,2,1,0,0,0,0,64,0,-1--1--1,,1|(534,343)|
+1,11,1,4,1,0,0,0,0,64,0,-1--1--1,,1|(616,325)|
+10,12,Population with Jobs,513,661,54,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,13,Refugees,889,490,39,11,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,14,Population in Safe Havens,872,231,62,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,15,Deaths from Unsuccessful Border Crossings,192,461,66,28,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,16,Population with Enough Food,210,100,54,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,17,6,3,1,0,0,0,0,64,0,-1--1--1,,1|(470,24)|
+1,18,16,3,1,0,0,0,0,64,0,-1--1--1,,1|(182,206)|
+1,19,15,2,1,0,0,0,0,64,0,-1--1--1,,1|(313,476)|
+1,20,12,4,1,0,0,0,0,64,0,-1--1--1,,1|(517,547)|
+1,21,6,4,1,0,0,0,0,64,0,-1--1--1,,1|(1228,335)|
+12,22,0,251,277,6,11,8,7,0,0,-1,0,0,0
+o
+12,23,0,301,277,5,11,8,7,0,0,-1,0,0,0
+s
+12,24,0,285,297,5,11,8,7,0,0,-1,0,0,0
+s
+12,25,0,585,230,6,11,8,7,0,0,-1,0,0,0
+o
+12,26,0,551,525,5,11,8,7,0,0,-1,0,0,0
+s
+12,27,0,597,449,5,11,8,7,0,0,-1,0,0,0
+s
+12,28,0,375,410,5,11,8,7,0,0,-1,0,0,0
+s
+12,29,0,374,461,5,11,8,7,0,0,-1,0,0,0
+s
+10,30,Investment in Peacekeeping,757,182,45,19,8,3,0,0,0,0,0,0
+10,31,Investment in Diplomacy,910,337,42,19,8,3,0,0,0,0,0,0
+10,32,Investment in Immigration,723,423,42,19,8,3,0,0,0,0,0,0
+1,33,1,32,1,0,0,0,0,64,0,-1--1--1,,1|(620,319)|
+1,34,14,31,1,0,0,0,0,64,0,-1--1--1,,1|(892,257)|
+1,35,14,30,1,0,0,0,0,64,0,-1--1--1,,1|(850,213)|
+1,36,6,30,1,0,0,0,0,64,0,-1--1--1,,1|(735,111)|
+1,37,6,31,1,0,0,0,0,64,0,-1--1--1,,1|(936,236)|
+1,38,13,32,1,0,0,0,0,64,0,-1--1--1,,1|(838,495)|
+12,39,0,821,183,6,11,8,7,0,0,-1,0,0,0
+o
+12,40,0,894,311,6,11,8,7,0,0,-1,0,0,0
+o
+12,41,0,733,456,5,11,8,7,0,0,-1,0,0,0
+s
+1,42,1,30,1,0,0,0,0,64,0,-1--1--1,,1|(660,255)|
+1,43,1,31,1,0,0,0,0,64,0,-1--1--1,,1|(705,308)|
+12,44,0,745,214,10,10,8,135,0,0,-1,0,0,0
+s
+12,45,0,939,309,5,11,8,7,0,0,-1,0,0,0
+s
+12,46,0,674,405,5,11,8,7,0,0,-1,0,0,0
+s
+12,47,0,854,351,5,11,8,7,0,0,-1,0,0,0
+s
+1,48,3,1,1,0,0,0,0,64,0,-1--1--1,,1|(381,279)|
+1,49,2,1,1,0,0,0,0,64,0,-1--1--1,,1|(429,374)|
+1,50,4,1,1,0,0,0,0,64,0,-1--1--1,,1|(542,445)|
+1,51,32,1,1,0,0,0,0,64,0,-1--1--1,,1|(678,336)|
+1,52,31,1,1,0,0,0,0,64,0,-1--1--1,,1|(775,282)|
+12,53,0,521,249,6,11,8,7,0,0,-1,0,0,0
+o
+12,54,0,533,292,6,11,8,7,0,0,-1,0,0,0
+o
+12,55,0,592,306,6,11,8,7,0,0,-1,0,0,0
+o
+12,56,0,640,308,6,11,8,7,0,0,-1,0,0,0
+o
+12,57,0,665,279,6,11,8,7,0,0,-1,0,0,0
+o
+12,58,0,509,513,6,11,8,7,0,0,-1,0,0,0
+o
+12,59,0,769,152,5,11,8,7,0,0,-1,0,0,0
+s
+10,60,Investment in Health Services,424,148,65,19,8,3,0,0,0,0,0,0
+10,61,Population Without Disease,347,232,57,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,62,6,60,1,0,0,0,0,64,0,-1--1--1,,1|(524,64)|
+1,63,61,60,1,0,0,0,0,64,0,-1--1--1,,1|(378,178)|
+1,64,60,1,1,0,0,0,0,64,0,-1--1--1,,1|(499,178)|
+1,65,1,60,1,0,0,0,0,64,0,-1--1--1,,1|(494,223)|
+1,66,30,1,1,0,0,0,0,64,0,-1--1--1,,1|(685,201)|
+12,67,0,606,221,5,11,8,7,0,0,-1,0,0,0
+s
+12,68,0,633,223,6,11,8,7,0,0,-1,0,0,0
+o
+12,69,0,642,244,6,11,8,7,0,0,-1,0,0,0
+o
+12,70,0,347,331,5,11,8,7,0,0,-1,0,0,0
+s
+12,71,0,395,179,6,11,8,7,0,0,-1,0,0,0
+o
+12,72,0,435,180,5,11,8,7,0,0,-1,0,0,0
+s
+///---\\\
+:L<%^E!@
+9:Current
+22:$,Dollar,Dollars,$s
+22:Hour,Hours
+22:Month,Months
+22:Person,People,Persons
+22:Unit,Units
+22:Week,Weeks
+22:Year,Years
+22:Day,Days
+23:0
+15:0,0,0,0,0,0
+19:100,0
+27:2,
+34:0,
+5:Births
+35:Date
+36:YYYY-MM-DD
+37:2000
+38:1
+39:1
+40:2
+41:0
+42:0
+24:0
+25:0
+26:0

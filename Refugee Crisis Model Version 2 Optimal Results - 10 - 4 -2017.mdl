@@ -1,0 +1,1870 @@
+{UTF-8}
+Attempted Border Crossings per Month=
+	IF THEN ELSE(Time=0, 0, Normal Attempted Border Crossings Per Month*Effect of Border Crossing Resources on Attempted Border Crossing per Month\
+		(Border Crossing Resources/Normal Border Crossing Resources)*Effect of Successful Border Crossings on Attempted Border Crossings per Month\
+		(Average Successful Border Crossings per Month/Normal Successful Border Crossings per Month\
+		)*Effect of Unsuccessful Border Crossings on Attempted Border Crossings per Month(Average Unsuccessful Border Crossings per Month\
+		/Normal Unsuccessful Border Crossings per Month)*Effect of Border Control on Attempted Border Crossings Per Month\
+		(Border Control Resources/Normal Border Control Resources)*Effect of Refugees on Attempted Border Crossings Per Month\
+		(Refugees/Normal Refugees))
+	~	Border Crossings/Months
+	~		|
+
+Cured Per Month=
+	IF THEN ELSE(Population With Disease>0, Medical Practitioners*Average People a Medical Practitioner Can Handle\
+		/Average Time to Cure Disease , 0 )
+	~	Families/Month
+	~		|
+
+Fraction of Remaining Investment in Peacekeeping=
+	MIN(Desired Fraction of Investment in Peacekeeping, MAX(0, (1-Fraction of Investment in Border Control\
+		-Fraction of Remaining Investment in Food Aid
+	-Fraction of Remaining Investment in Health Services
+	-Fraction of Remaining Investment in Diplomacy)) )
+	~	dmnl
+	~		|
+
+Average Unsuccessful Border Crossings per Month=
+	IF THEN ELSE(Time>1, Unsuccessful Border Crossings/Time, 0)
+	~	
+	~		|
+
+Fraction of Remaining Investment in Diplomacy=
+	MIN(Desired Fraction of Investment in Diplomacy, MAX(0, (1-Fraction of Investment in Border Control\
+		-Fraction of Remaining Investment in Food Aid
+	-Fraction of Remaining Investment in Health Services
+	) ))
+	~	dmnl
+	~		|
+
+Average People a Medical Practitioner Can Handle=
+	180
+	~	Families/Doctors
+	~		|
+
+Average Successful Border Crossings per Month=
+	IF THEN ELSE(Time>1, Successful Border Crossings/Time, 0)
+	~	
+	~		|
+
+Desired Border Crossing Resources=
+	Normal Border Crossing Resources*Effect of Refugees on Desired Border Crossing Resources\
+		(Refugees/Normal Refugees)
+	~	Boats
+	~		|
+
+Effect of Refugees on Desired Border Crossing Resources(
+	[(0,0)-(100,100)],(0,0),(1,1),(100,100))
+	~	
+	~		|
+
+Average Time to Cure Disease=
+	1
+	~	Months
+	~		|
+
+Death Rate from Starvation=
+	Normal Death Rate from Starvation*(Population in Foreign Country-Population with Enough Food\
+		)
+	~	Families/Month
+	~		|
+
+Death Rate from Violence=
+	Normal Death Rate from Violence*(Population in Foreign Country-Population in Safe Havens\
+		)
+	~	Families/Month
+	~		|
+
+Infections Per Month=
+	IF THEN ELSE(Population With Disease>0, (Population in Safe Havens-Population With Disease\
+		)*Normal Infection Rate*Effect of Crowding on Disease Rate(Crowding Fraction)
+	 , 0 )
+	~	Families/Month
+	~		|
+
+Normal Families in Safe Havens=
+	10000
+	~	Families
+	~		|
+
+Death Rate From Disease=
+	Normal Death Rate From Disease*(Population in Foreign Country-Population without Disease\
+		)
+	~	Families/Month
+	~		|
+
+Crowding Fraction=
+	Population in Safe Havens/Normal Families in Safe Havens
+	~	dmnl
+	~		|
+
+Population with Enough Food=
+	IF THEN ELSE((Food/(Average Consumption per Family*Months))>=Population in Foreign Country\
+		, Population in Foreign Country , Food/(Average Consumption per Family*Months))
+	~	Families
+	~		|
+
+Population in Safe Havens=
+	IF THEN ELSE( Safe Havens*Average Population per Safe Haven>=Population in Foreign Country\
+		 , Population in Foreign Country , Safe Havens*Average Population per Safe Haven)
+	~	Families
+	~		|
+
+Desired Border Control Resources=
+	Investment in Border Control/Average Cost of Border Control Resources
+	~	Boats
+	~		|
+
+Food Aid=
+	(Investment in Food Aid/Average Cost of Food Unit)*Effect of Violence on Distribution of Food Aid\
+		(Violence Level/Normal Violence Level Required to Disrupt Delivery of Food Aid)
+	~	Food Units/Month
+	~		|
+
+Average Cost of Border Control Resources=
+	1
+	~	Million Dollars/Boats/Month
+	~		|
+
+Average Cost of Food Unit=
+	1e-005
+	~	Million Dollars/Food Units
+	~		|
+
+Average Cost of Immigration Officers=
+	0.01
+	~	Million Dollars/Immigration Officers/Month
+	~		|
+
+Average Cost of Medical Practitioners=
+	0.005
+	~	Million Dollars/Doctors/Month
+	~		|
+
+Average Cost of Peacekeepers=
+	0.01
+	~	Million Dollars/Soldiers/Month
+	~		|
+
+Average Cost to Setup a Business=
+	0.01
+	~	Million Dollars/Businesses
+	~		|
+
+Desired Number of Businesses=
+	Population in Foreign Country/Average Jobs per Business
+	~	Businesses
+	~		|
+
+Desired Amount of Diplomatic Effort=
+	Investment in Diplomacy/Average Cost of Diplomatic Effort
+	~	Diplomats
+	~		|
+
+Desired Number of Immigration Officers=
+	Investment in Immigration/Average Cost of Immigration Officers
+	~	Immigration Officers
+	~		|
+
+Desired Number of Peacekeepers=
+	Investment in Peacekeeping/Average Cost of Peacekeepers
+	~	Soldiers
+	~		|
+
+Desired Number of Safe Havens=
+	Population in Foreign Country/Average Population per Safe Haven
+	~	Havens
+	~		|
+
+Desired Violence Level=
+	IF THEN ELSE(Violence Level<=0, 0 , (Violence Level*Violence Escalation Rate-(Peacekeepers\
+		/Average Peacekeepers to Reduce a Battle+Diplomatic Effort/Average Diplomats to Create a Cease Fire\
+		)))
+	~	Battles
+	~		|
+
+Diplomatic Effort= INTEG (
+	Change in Diplomatic Effort,
+		Initial Diplomatic Effort)
+	~	Diplomats
+	~		|
+
+Average Time to Change Violence Level=
+	48
+	~	Months
+	~		|
+
+Initial Border Control Resources=
+	0
+	~	Boats
+	~		|
+
+Average Time to Decide to Leave Foreign Country=
+	Normal Time to Decide to Leave Foreign Country*Effect of People At Risk on Average Time to Decide to Leave Foreign Country\
+		((Population in Foreign Country-Population Unaffected)/Population in Foreign Country\
+		)
+	~	Months
+	~		|
+
+Average Time to Destroy Business=
+	Normal Time to Destroy Business*Effect of Violence on Time to Destroy a Business(Violence Level\
+		/Normal Violence Level Required to Destroy a Business)
+	~	Months
+	~		|
+
+Average Time to Destroy Safe Haven=
+	Normal Time to Destroy a Safe Haven*Effect of Violence on Time to Destroy a Safe Haven\
+		(Violence Level/Normal Violence Required to Destroy a Safe Haven)
+	~	Months
+	~		|
+
+Average Time to Employ Diplomats=
+	4.75
+	~	Months
+	~		|
+
+Average Time to Deploy Border Control Resources=
+	3.5
+	~	Months
+	~		|
+
+Average Time to Hire Medical Practitioners=
+	4
+	~	Months
+	~		|
+
+Average Time to Deploy Peacekeepers=
+	5.5
+	~	Months
+	~		|
+
+Normal Violence Level Required to Destroy Harvest=
+	5
+	~	Battles
+	~		|
+
+Average Time to Train an Immigration Officer=
+	5.5
+	~	Months
+	~		|
+
+Initial Medical Practitioners=
+	50
+	~	Doctors
+	~		|
+
+Border Control Resources= INTEG (
+	Change in Border Control Resources,
+		Initial Border Control Resources)
+	~	Boats
+	~		|
+
+Border Crossing Resources= INTEG (
+	Change in Border Crossing Resources,
+		Initial Border Crossing Resources)
+	~	Boats
+	~		|
+
+Population Unaffected=
+	MIN(Population with Enough Food, MIN( Population without Disease ,MIN(Population in Safe Havens\
+		, Population with Jobs )
+	 ))
+	~	Families
+	~		|
+
+Businesses Created=
+	IF THEN ELSE(Desired Number of Businesses>Businesses, Investment in Economic Development\
+		/Average Cost to Setup a Business , 0 )
+	~	Businesses/Month
+	~		|
+
+Desired Fraction of Investment in Peacekeeping=
+	Effect of Violence on Fraction of Investment in Peacekeeping((Population in Foreign Country
+	-Population in Safe Havens)/Population in Foreign Country)
+	~	dmnl
+	~		|
+
+Change in Border Control Resources=
+	(Desired Border Control Resources-Border Control Resources)/Average Time to Deploy Border Control Resources
+	~	Boats/Month
+	~		|
+
+Change in Border Crossing Resources=
+	(Desired Border Crossing Resources-Border Crossing Resources)/Average Time to Add Border Crossing Resources
+	~	Boats/Month
+	~		|
+
+Change in Diplomatic Effort=
+	(Desired Amount of Diplomatic Effort-Diplomatic Effort)/Average Time to Employ Diplomats
+	~	Diplomats/Month
+	~		|
+
+Change in Immigration Officers=
+	(Desired Number of Immigration Officers-Immigration Officers)/Average Time to Train an Immigration Officer
+	~	Immigration Officers/Month
+	~		|
+
+Change in Medical Practitioners=
+	(Desired Number of Medical Practitioners-Medical Practitioners)/Average Time to Hire Medical Practitioners
+	~	Doctors/Month
+	~		|
+
+Change in Peacekeepers=
+	(Desired Number of Peacekeepers-Peacekeepers)/Average Time to Deploy Peacekeepers
+	~	Soldiers/Month
+	~		|
+
+Change in Violence Level=
+	(Limited Desired Violence Level-Violence Level)/Average Time to Change Violence Level
+	~	Battles/Month
+	~		|
+
+Average Cost of Diplomatic Effort=
+	0.001
+	~	Million Dollars/Diplomats/Month
+	~		|
+
+Average Diplomats to Create a Cease Fire=
+	2
+	~	Diplomats/Battles
+	~		|
+
+Investment in Peacekeeping=
+	Fraction of Remaining Investment in Peacekeeping*Total Investment
+	~	Million Dollars/Month
+	~		|
+
+Limited Desired Violence Level=
+	IF THEN ELSE(Desired Violence Level<=0, 0 , Desired Violence Level )
+	~	Battles
+	~		|
+
+Medical Practitioners= INTEG (
+	Change in Medical Practitioners,
+		Initial Medical Practitioners)
+	~	Doctors
+	~		|
+
+Average Time to Create Safe Haven=
+	Normal Time to Create a Safe Haven*Effect of Peacekeepers on Time to Create Safe Haven\
+		(Peacekeepers/Normal Peacekeepers Required to Protect Safe Haven)
+	~	Months
+	~		|
+
+Average Time to Add Border Crossing Resources=
+	12
+	~	Months
+	~		|
+
+Effect of Peacekeepers on Time to Create Safe Haven(
+	[(0,0)-(10,100)],(0,1000),(0.4,1),(100,0.01))
+	~	dmnl
+	~		|
+
+Families Processed At The Same Time By Immigration Officer=
+	16
+	~	Families/Immigration Officers
+	~		|
+
+Famine=
+	Effect of Violence on Famine(Violence Level/Normal Violence Level Required to Destroy Harvest\
+		)
+	~	dmnl
+	~		|
+
+Normal Violence Required to Destroy a Safe Haven=
+	5
+	~	Battles
+	~		|
+
+Desired Fraction of Investment in Diplomacy=
+	Effect of Violence on Fraction of Investment in Diplomacy((Population in Foreign Country
+	-Population in Safe Havens)/Population in Foreign Country)
+	~	dmnl
+	~		|
+
+Safe Havens Created=
+	(Desired Number of Safe Havens-Safe Havens)/Average Time to Create Safe Haven
+	~	Havens/Month
+	~		|
+
+Effect of People At Risk on Average Time to Decide to Leave Foreign Country(
+	[(0,0)-(10,1e+006)],(0,100),(0.4,0.5),(1,0))
+	~	dmnl
+	~		|
+
+Desired Fraction of Investment in Immigration=
+	Effect of Refugees on Fraction of Investment in Immigration(Refugees/Normal Refugees
+	)
+	~	dmnl
+	~		|
+
+Desired Number of Medical Practitioners=
+	Investment in Health Services/Average Cost of Medical Practitioners
+	~	Doctors
+	~		|
+
+Normal Refugees=
+	10000
+	~	Families
+	~		|
+
+Average Peacekeepers to Reduce a Battle=
+	650
+	~	Soldiers/Battles
+	~		|
+
+Refugees= INTEG (
+	Net Additions to Refugees-Refugees Attempting Border Crossings-Refugees Processed Per Month\
+		,
+		Initial Refugees)
+	~	Families
+	~		|
+
+Initial Violence Level=
+	1
+	~	Battles
+	~		|
+
+Normal Violence Level Required to Disrupt Delivery of Food Aid=
+	5
+	~	Battles
+	~		|
+
+Normal Peacekeepers Required to Protect Safe Haven=
+	500
+	~	Soldiers
+	~		|
+
+Peacekeepers= INTEG (
+	Change in Peacekeepers,
+		Initial Peacekeepers)
+	~	Soldiers
+	~		|
+
+Investment in Economic Development=
+	MAX(0, (Total Investment-Investment in Border Control-Investment in Food Aid-Investment in Health Services\
+		-Investment in Immigration
+	-Investment in Peacekeeping
+	-Investment in Diplomacy
+	) )
+	~	Million Dollars/Month
+	~		|
+
+Normal Time to Create a Safe Haven=
+	4
+	~	Months
+	~		|
+
+Violence Escalation Rate=
+	5
+	~	dmnl
+	~		|
+
+Refugees Who Have Immigrated= INTEG (
+	Refugees Processed Per Month,
+		Initial Refugees Who Have Immigrated)
+	~	Families
+	~		|
+
+Investment in Diplomacy=
+	Fraction of Remaining Investment in Diplomacy*Total Investment
+	~	Million Dollars/Month
+	~		|
+
+Initial Peacekeepers=
+	0
+	~	Soldiers
+	~		|
+
+Normal Violence Level Required to Destroy a Business=
+	1
+	~	Battles
+	~		|
+
+Violence Level= INTEG (
+	Change in Violence Level,
+		Initial Violence Level)
+	~	Battles
+	~		|
+
+Refugees Processed Per Month=
+	Immigration Officers*Families Processed At The Same Time By Immigration Officer/Average Time to Process Immigration Papers
+	~	Families/Month
+	~		|
+
+Initial Diplomatic Effort=
+	0
+	~	Diplomats
+	~		|
+
+Cumulative Avoidable Deaths=
+	Deaths From Disease+Deaths from Starvation+Deaths from Violence+Deaths from Unsuccessful Border Crossings
+	~	Families
+	~		|
+
+Deaths from Unsuccessful Border Crossings= INTEG (
+	Deaths Per Month from Unsuccessful Border Crossings,
+		Initial Deaths from Unsuccessful Border Crossings)
+	~	Families
+	~		|
+
+Initial Deaths from Unsuccessful Border Crossings=
+	0
+	~	Families
+	~		|
+
+Deaths Per Month from Unsuccessful Border Crossings=
+	Attempted Border Crossings per Month*Families per Border Crossing*Fraction of Border Crossings that are Unsuccessful\
+		*Fraction of Deaths per Unsuccessful Border Crossing
+	~	Families/Month
+	~		|
+
+Average Deaths from Unsuccessful Border Crossings per Month=
+	IF THEN ELSE( Time=0 , 0 , Deaths from Unsuccessful Border Crossings/Time)
+	~	Families/Month
+	~		|
+
+Fraction of Remaining Investment in Immigration=
+	MIN(Desired Fraction of Investment in Immigration, MAX(0, (1-Fraction of Investment in Border Control\
+		-Fraction of Remaining Investment in Food Aid-Fraction of Remaining Investment in Health Services
+	-Fraction of Remaining Investment in Peacekeeping-Fraction of Remaining Investment in Diplomacy\
+		)) )
+	~	dmnl
+	~		|
+
+Investment in Health Services=
+	Fraction of Remaining Investment in Health Services*Total Investment
+	~	Million Dollars/Month
+	~		|
+
+Population in Foreign Country= INTEG (
+	Net Birth Rate-Death Rate From Disease-Death Rate from Starvation-Death Rate from Violence\
+		-Net Additions to Refugees,
+		Initial Population in Foreign Country)
+	~	Families
+	~		|
+
+Average Deaths From Disease Per Month=
+	IF THEN ELSE(Time=0, 0, Deaths From Disease/Time)
+	~	Families/Month
+	~		|
+
+Initial Deaths From Disease=
+	0
+	~	Families
+	~		|
+
+Initial Population With Disease=
+	1000
+	~	Families
+	~		|
+
+Deaths From Disease= INTEG (
+	Death Rate From Disease,
+		Initial Deaths From Disease)
+	~	Families
+	~		|
+
+Avoidable Deaths per Month=
+	Average Deaths by Starvation per Month+Average Deaths by Violence per Month+Average Deaths from Unsuccessful Border Crossings per Month\
+		+Average Deaths From Disease Per Month
+	~	Families/Month
+	~		|
+
+Effect of Crowding on Disease Rate(
+	[(0,0)-(1,10)],(0,0),(1,1),(100000,10))
+	~	dmnl
+	~		|
+
+Fraction of Remaining Investment in Health Services=
+	MIN(Desired Fraction of Investment in Health Resources, (1-Fraction of Investment in Border Control\
+		-Fraction of Remaining Investment in Food Aid ))
+	~	dmnl
+	~		|
+
+Desired Fraction of Investment in Health Resources=
+	Effect of Disease on Fraction of Investment in Health Resources((Population in Foreign Country\
+		-Population without Disease)/Population in Foreign Country)
+	~	dmnl
+	~		|
+
+Population With Disease= INTEG (
+	Infections Per Month-Cured Per Month,
+		Initial Population With Disease)
+	~	Families
+	~		|
+
+Normal Death Rate From Disease=
+	0.0008
+	~	Families/Families/Month
+	~		|
+
+Population without Disease=
+	Population in Foreign Country-Population With Disease
+	~	Families
+	~		|
+
+Effect of Disease on Fraction of Investment in Health Resources(
+	[(0,0)-(10,10)],(0,0),(0.1,0.2),(1,1))
+	~	dmnl
+	~		|
+
+Normal Infection Rate=
+	0.01
+	~	Families/Families/Month
+	~		|
+
+Fraction of Border Crossings that are Unsuccessful=
+	Normal Fraction of Unsuccessful Border Crossings*Effect of Border Crossing Resources on Fraction of Unsuccessful Border Crossings
+	(Border Crossing Resources/Normal Border Crossing Resources)
+	~	dmnl
+	~		|
+
+Export Food=
+	MAX(0, ((Food/Months)-(Population in Foreign Country*Average Consumption per Family)\
+		))
+	~	Food Units/Month
+	~		|
+
+Food Consumption=
+	(Food/Normal Food)*Average Consumption per Family*Population in Foreign Country
+	~	Food Units/Month
+	~		|
+
+Normal Food=
+	1e+007
+	~	Food Units
+	~		|
+
+Effect of Violence on Fraction of Investment in Diplomacy(
+	[(0,0)-(1,10)],(0,0),(0.03,0.2),(1,1))
+	~	dmnl
+	~		|
+
+Refugees Attempting Border Crossings=
+	IF THEN ELSE(Refugees/Months<=Attempted Border Crossings per Month*Families per Border Crossing\
+		, Refugees/Months , Attempted Border Crossings per Month
+	*Families per Border Crossing)
+	~	Families/Month
+	~		|
+
+Desired Fraction of Investment in Food Aid=
+	Effect of Famine on Fraction of Investment in Food Aid((Population in Foreign Country
+	-Population with Enough Food)/Population in Foreign Country)
+	~	dmnl
+	~		|
+
+Fraction of Investment in Border Control=
+	Effect of Deaths per Month on Fraction of Investment in Border Control(Average Deaths from Unsuccessful Border Crossings per Month
+	/Normal Deaths per Month From Unsuccessful Border Crossings)
+	~	dmnl
+	~		|
+
+Normal Fraction of Unsuccessful Border Crossings=
+	0.01
+	~	dmnl
+	~		|
+
+Normal Border Control Resources=
+	5
+	~	Million Dollars/Month
+	~		|
+
+Normal Attempted Border Crossings Per Month=
+	10
+	~	Border Crossings/Months
+	~		|
+
+Successful Border Crossings Per Month=
+	(1-Fraction of Border Crossings that are Unsuccessful)*Attempted Border Crossings per Month
+	~	Border Crossings/Month
+	~		|
+
+Effect of Refugees on Attempted Border Crossings Per Month(
+	[(0,0)-(10,10)],(0,0),(1,1),(100,100))
+	~	dmnl
+	~		|
+
+Normal Border Crossing Resources=
+	100
+	~	Boats
+	~		|
+
+Initial Successful Border Crossings=
+	1
+	~	Border Crossings
+	~		|
+
+Initial Unsuccessful Border Crossings=
+	1
+	~	Border Crossings
+	~		|
+
+Effect of Successful Border Crossings on Attempted Border Crossings per Month(
+	[(0,0)-(100,60)],(0,0),(1,1),(1000,50))
+	~	dmnl
+	~		|
+
+Normal Successful Border Crossings per Month=
+	10
+	~	Border Crossings/Month
+	~		|
+
+Normal Families per Border Crossing=
+	50
+	~	Families/Border Crossings
+	~		|
+
+Successful Border Crossings= INTEG (
+	Successful Border Crossings Per Month,
+		Initial Successful Border Crossings)
+	~	Border Crossings
+	~		|
+
+Normal Unsuccessful Border Crossings per Month=
+	10
+	~	Border Crossings/Month
+	~		|
+
+Families per Border Crossing=
+	Normal Families per Border Crossing*Effect of Border Crossing Resources on Families per Border Crossing\
+		(Border Crossing Resources/Normal Border Crossing Resources)
+	~	Families/Border Crossings
+	~		|
+
+Effect of Border Control on Attempted Border Crossings Per Month(
+	[(0,0)-(10,100)],(0,1),(0.5,0.1),(10,1e-005))
+	~	dmnl
+	~		|
+
+Unsuccessful Border Crossings Per Month=
+	Fraction of Border Crossings that are Unsuccessful*Attempted Border Crossings per Month
+	~	Border Crossings/Month
+	~		|
+
+Effect of Border Crossing Resources on Attempted Border Crossing per Month(
+	[(0,0)-(10,10)],(0,0),(1,1),(100,20))
+	~	dmnl
+	~		|
+
+Effect of Border Crossing Resources on Families per Border Crossing(
+	[(0,0)-(1,10)],(0,10),(1,1),(100,1))
+	~	dmnl
+	~		|
+
+Effect of Border Crossing Resources on Fraction of Unsuccessful Border Crossings(
+	[(0,0)-(10,10)],(0,5),(1,1),(100,0.01))
+	~	dmnl
+	~		|
+
+Unsuccessful Border Crossings= INTEG (
+	Unsuccessful Border Crossings Per Month,
+		Initial Unsuccessful Border Crossings)
+	~	Border Crossings
+	~		|
+
+Fraction of Deaths per Unsuccessful Border Crossing=
+	1
+	~	dmnl
+	~		|
+
+Effect of Unsuccessful Border Crossings on Attempted Border Crossings per Month(
+	[(0,0)-(100,10)],(0,1),(1,0.01),(100,0.001))
+	~	dmnl
+	~		|
+
+Initial Deaths from Starvation=
+	0
+	~	Families
+	~		|
+
+Average Life Expectancy=
+	600
+	~	Months
+	~		|
+
+Initial Deaths from Violence=
+	0
+	~	Families
+	~		|
+
+Normal Death Rate from Starvation=
+	0.0008
+	~	Families/Families/Month
+	~		|
+
+Average Deaths by Starvation per Month=
+	IF THEN ELSE(Time=0, 0 , Deaths from Starvation/Time)
+	~	Families/Month
+	~		|
+
+Average Deaths by Violence per Month=
+	IF THEN ELSE(Time=0, 0 , Deaths from Violence/Time)
+	~	Families/Month
+	~		|
+
+Deaths from Starvation= INTEG (
+	Death Rate from Starvation,
+		Initial Deaths from Starvation)
+	~	Families
+	~		|
+
+Deaths from Violence= INTEG (
+	Death Rate from Violence,
+		Initial Deaths from Violence)
+	~	Families
+	~		|
+
+Normal Deaths per Month=
+	1000
+	~	Families/Month
+	~		|
+
+Total Investment=
+	Normal Total Investment*Effect of People in Danger on Total Investment((Population in Foreign Country\
+		-Population Unaffected
+	)/Population in Foreign Country)*Effect of Deaths per Month on Total Investment(Avoidable Deaths per Month\
+		/Normal Deaths per Month
+	)
+	~	Million Dollars/Month
+	~		|
+
+Investment in Border Control=
+	Fraction of Investment in Border Control*Total Investment
+	~	Million Dollars/Month
+	~		|
+
+Normal Death Rate from Violence=
+	0.005
+	~	Families/Families/Month
+	~		|
+
+Net Birth Rate=
+	Normal Birth Rate*Population in Foreign Country-Population in Foreign Country/Average Life Expectancy
+	~	Families/Month
+	~		|
+
+Effect of Violence on Distribution of Food Aid(
+	[(0,0)-(10,1)],(0,1),(4,0.5),(10,0.1))
+	~	dmnl
+	~		|
+
+Effect of Violence on Famine(
+	[(0,0)-(10,10)],(0,0),(1,0.2),(10,1))
+	~	dmnl
+	~		|
+
+Food= INTEG (
+	Food Aid+Food Growth-Export Food-Food Consumption,
+		Initial Food)
+	~	Food Units
+	~		|
+
+Normal Deaths per Month From Unsuccessful Border Crossings=
+	1000
+	~	Families/Month
+	~		|
+
+Effect of Deaths per Month on Total Investment(
+	[(0,0)-(10,10)],(0,1),(0.5,2),(100,50))
+	~	dmnl
+	~		|
+
+Effect of Violence on Time to Destroy a Safe Haven(
+	[(0,0)-(10,100)],(0,100),(1,1),(2,0.01))
+	~	dmnl
+	~		|
+
+Months=
+	1
+	~	Months
+	~		|
+
+Effect of People in Danger on Total Investment(
+	[(0,0)-(1,10)],(0,0),(0.06,2),(1,10))
+	~	dmnl
+	~		|
+
+Effect of Violence on Time to Destroy a Business(
+	[(0,0)-(10,100)],(0,100),(1,1),(20,0.2))
+	~	dmnl
+	~		|
+
+Average Consumption per Family=
+	1
+	~	Food Units/Month/Families
+	~		|
+
+Average Jobs per Business=
+	10
+	~	Families/Businesses
+	~		|
+
+Average Population per Safe Haven=
+	50000
+	~	Families/Havens
+	~		|
+
+Businesses= INTEG (
+	Businesses Created-Businesses Destroyed,
+		Initial Businesses)
+	~	Businesses
+	~		|
+
+Businesses Destroyed=
+	Businesses/Average Time to Destroy Business
+	~	Businesses/Month
+	~		|
+
+Effect of Deaths per Month on Fraction of Investment in Border Control(
+	[(0,0)-(100,100)],(0,0),(0.5,0.2),(100,1))
+	~	dmnl
+	~		|
+
+Effect of Famine on Fraction of Investment in Food Aid(
+	[(0,0)-(1,10)],(0,0),(0.02,0.2),(1,1))
+	~	dmnl
+	~		|
+
+Effect of Refugees on Fraction of Investment in Immigration(
+	[(0,0)-(100,10)],(0,0),(3,0.2),(100,1))
+	~	dmnl
+	~		|
+
+Effect of Violence on Fraction of Investment in Peacekeeping(
+	[(0,0)-(1,10)],(0,0),(0.1,0.5),(1,1))
+	~	dmnl
+	~		|
+
+Food Growth=
+	MAX(0,Food Growth Rate*Food)
+	~	Food Units/Month
+	~		|
+
+Food Growth Rate=
+	Normal Food Growth Rate*(1-Famine)
+	~	Food Units/Food Units/Month
+	~		|
+
+Fraction of Remaining Investment in Food Aid=
+	MIN(Desired Fraction of Investment in Food Aid, MAX( 0, (1-Fraction of Investment in Border Control\
+		) ))
+	~	dmnl
+	~		|
+
+Immigration Officers= INTEG (
+	Change in Immigration Officers,
+		Initial Immigration Officers)
+	~	Immigration Officers
+	~		|
+
+Initial Border Crossing Resources=
+	100
+	~	Boats
+	~		|
+
+Initial Businesses=
+	1e+006
+	~	Businesses
+	~		|
+
+Initial Food=
+	1e+007
+	~	Food Units
+	~		|
+
+Initial Immigration Officers=
+	0
+	~	Immigration Officers
+	~		|
+
+Initial Population in Foreign Country=
+	1e+007
+	~	Families
+	~		|
+
+Initial Refugees=
+	0
+	~	Families
+	~		|
+
+Initial Refugees Who Have Immigrated=
+	0
+	~	Families
+	~		|
+
+Initial Safe Havens=
+	200
+	~	Havens
+	~		|
+
+Investment in Food Aid=
+	Fraction of Remaining Investment in Food Aid*Total Investment
+	~	Million Dollars/Month
+	~		|
+
+Investment in Immigration=
+	Fraction of Remaining Investment in Immigration*Total Investment
+	~	Million Dollars/Month
+	~		|
+
+Net Additions to Refugees=
+	(Population in Foreign Country-Population Unaffected)/Average Time to Decide to Leave Foreign Country
+	~	Families/Month
+	~		|
+
+Normal Birth Rate=
+	0.001
+	~	Families/Families/Month
+	~		|
+
+Normal Food Growth Rate=
+	1
+	~	Food Units/Food Units/Month
+	~		|
+
+Normal Time to Decide to Leave Foreign Country=
+	600
+	~	Months
+	~		|
+
+Normal Time to Destroy a Safe Haven=
+	36
+	~	Months
+	~		|
+
+Normal Time to Destroy Business=
+	24
+	~	Months
+	~		|
+
+Average Time to Process Immigration Papers=
+	3.5
+	~	Months
+	~		|
+
+Normal Total Investment=
+	35
+	~	Million Dollars/Month
+	~		|
+
+Population with Jobs=
+	Businesses*Average Jobs per Business
+	~	Families
+	~		|
+
+Safe Havens= INTEG (
+	Safe Havens Created-Safe Havens Destroyed,
+		Initial Safe Havens)
+	~	Havens
+	~		|
+
+Safe Havens Destroyed=
+	Safe Havens/Average Time to Destroy Safe Haven
+	~	Havens/Month
+	~		|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 60
+	~	Month
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 0
+	~	Month
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 
+        TIME STEP
+	~	Month [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 0.0078125
+	~	Month [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Refugees
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|96,96,100,0
+10,1,Population in Foreign Country,293,294,126,35,3,131,0,0,0,0,0,0
+10,2,Refugees,742,285,146,34,3,131,0,0,0,0,0,0
+10,3,Refugees Who Have Immigrated,1115,287,63,27,3,131,0,0,0,0,0,0
+1,4,6,2,4,0,0,22,0,0,0,-1--1--1,,1|(544,286)|
+1,5,6,1,100,0,0,22,0,0,0,-1--1--1,,1|(450,286)|
+11,6,2668,487,286,6,8,34,3,0,0,1,0,0,0
+10,7,Net Additions to Refugees,487,313,54,19,40,3,0,0,-1,0,0,0
+12,8,48,25,286,10,8,0,3,0,0,-1,0,0,0
+1,9,11,1,4,0,0,22,0,0,0,-1--1--1,,1|(131,286)|
+1,10,11,8,100,0,0,22,0,0,0,-1--1--1,,1|(59,286)|
+11,11,48,89,286,6,8,34,3,0,0,1,0,0,0
+10,12,Net Birth Rate,89,305,46,11,40,3,0,0,-1,0,0,0
+1,13,15,3,4,0,0,22,0,0,0,-1--1--1,,1|(1012,287)|
+1,14,15,2,100,0,0,22,0,0,0,-1--1--1,,1|(924,287)|
+11,15,2908,966,287,6,8,34,3,0,0,1,0,0,0
+10,16,Refugees Processed Per Month,966,314,86,19,40,131,0,0,-1,0,0,0
+10,17,Initial Population in Foreign Country,197,225,60,19,8,3,0,0,0,0,0,0
+10,18,Initial Refugees,711,358,48,11,8,3,0,0,0,0,0,0
+10,19,Initial Refugees Who Have Immigrated,1189,382,71,26,8,131,0,0,0,0,0,0
+1,20,19,3,1,0,0,0,0,64,1,-1--1--1,,1|(1153,345)|
+10,21,Average Time to Decide to Leave Foreign Country,571,544,82,19,8,3,0,0,0,0,0,0
+1,22,21,7,1,0,0,0,0,64,0,-1--1--1,,1|(527,401)|
+1,23,1,7,1,0,0,0,0,64,0,-1--1--1,,1|(396,346)|
+1,24,1,12,1,0,0,0,0,64,0,-1--1--1,,1|(166,347)|
+10,25,Normal Birth Rate,81,184,58,11,8,3,0,0,0,0,0,0
+1,26,25,12,1,0,0,0,0,64,0,-1--1--1,,1|(85,205)|
+1,27,1,21,1,0,0,0,0,64,0,-1--1--1,,1|(470,370)|
+10,28,Normal Time to Decide to Leave Foreign Country,734,600,82,19,8,3,0,0,0,0,0,0
+1,29,28,21,1,0,0,0,0,64,0,-1--1--1,,1|(670,599)|
+10,30,Population Unaffected,875,490,35,19,8,3,0,0,0,0,0,0
+1,31,30,7,1,0,0,0,0,64,0,-1--1--1,,1|(610,425)|
+10,32,Average Time to Process Immigration Papers,1211,450,75,26,8,131,0,0,0,0,0,0
+10,33,Population with Enough Food,339,732,54,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,34,Population with Jobs,1040,650,54,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,35,34,30,1,0,0,0,0,64,0,-1--1--1,,1|(970,556)|
+1,36,33,30,1,0,0,0,0,64,0,-1--1--1,,1|(639,761)|
+10,37,Immigration Officers,824,411,43,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,38,Normal Death Rate from Violence,88,443,62,19,8,3,0,0,0,0,0,0
+10,39,Normal Death Rate from Starvation,389,560,66,19,8,3,0,0,0,0,0,0
+10,40,Average Life Expectancy,-19,355,42,19,8,3,0,0,0,0,0,0
+1,41,40,12,1,0,0,0,0,64,0,-1--1--1,,1|(33,346)|
+10,42,Deaths from Starvation,342,495,40,20,3,3,0,0,0,0,0,0
+10,43,Deaths from Violence,200,489,40,20,3,3,0,0,0,0,0,0
+1,44,46,43,4,0,0,22,0,0,0,-1--1--1,,1|(208,440)|
+1,45,46,1,100,0,0,22,0,0,0,-1--1--1,,1|(208,364)|
+11,46,2764,208,405,8,6,33,3,0,0,4,0,0,0
+10,47,Death Rate from Violence,269,405,53,19,40,3,0,0,-1,0,0,0
+1,48,50,42,4,0,0,22,0,0,0,-1--1--1,,1|(344,443)|
+1,49,50,1,100,0,0,22,0,0,0,-1--1--1,,1|(344,364)|
+11,50,892,344,405,8,6,33,3,0,0,4,0,0,0
+10,51,Death Rate from Starvation,405,405,53,19,40,3,0,0,-1,0,0,0
+1,52,39,51,1,0,0,0,0,64,0,-1--1--1,,1|(420,513)|
+1,53,38,47,1,0,0,0,0,64,0,-1--1--1,,1|(159,432)|
+1,54,1,47,1,0,0,0,0,64,0,-1--1--1,,1|(270,350)|
+1,55,33,51,1,0,0,0,0,64,0,-1--1--1,,1|(447,616)|
+1,56,17,1,0,0,0,0,0,64,1,-1--1--1,,1|(227,247)|
+10,57,Initial Deaths from Violence,95,569,69,19,8,3,0,0,0,0,0,0
+10,58,Initial Deaths from Starvation,235,573,58,19,8,3,0,0,0,0,0,0
+1,59,57,43,1,0,0,0,0,64,1,-1--1--1,,1|(147,533)|
+1,60,58,42,1,0,0,0,0,64,1,-1--1--1,,1|(282,541)|
+1,61,1,51,0,0,0,0,0,64,0,-1--1--1,,1|(351,352)|
+1,62,18,2,0,0,0,0,0,64,1,-1--1--1,,1|(718,339)|
+10,63,Time,100,-47,26,11,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+12,64,48,743,39,10,8,0,3,0,0,-1,0,0,0
+1,65,67,64,4,0,0,22,0,0,0,-1--1--1,,1|(743,95)|
+1,66,67,2,100,0,0,22,0,0,0,-1--1--1,,1|(743,203)|
+11,67,48,743,149,8,6,33,3,0,0,4,0,0,0
+10,68,Refugees Attempting Border Crossings,817,149,66,19,40,3,0,0,-1,0,0,0
+10,69,Attempted Border Crossings per Month,1009,54,72,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,70,Families per Border Crossing,1009,161,58,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,71,70,68,1,0,0,0,0,64,0,-1--1--1,,1|(916,195)|
+1,72,69,68,1,0,0,0,0,64,0,-1--1--1,,1|(944,72)|
+1,73,2,68,1,0,0,0,0,64,0,-1--1--1,,1|(820,240)|
+10,74,Months,875,26,43,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,75,74,68,1,0,0,0,0,64,0,-1--1--1,,1|(839,51)|
+10,76,Deaths From Disease,293,132,46,22,3,131,0,0,0,0,0,0
+1,77,79,76,4,0,0,22,0,0,0,-1--1--1,,1|(293,177)|
+1,78,79,1,100,0,0,22,0,0,0,-1--1--1,,1|(293,236)|
+11,79,2732,293,207,8,6,33,3,0,0,4,0,0,0
+10,80,Death Rate From Disease,357,207,56,19,40,3,0,0,-1,0,0,0
+1,81,1,80,1,0,0,0,0,64,0,-1--1--1,,1|(361,250)|
+10,82,Normal Death Rate From Disease,429,106,62,19,8,3,0,0,0,0,0,0
+1,83,82,80,1,0,0,0,0,64,0,-1--1--1,,1|(405,165)|
+10,84,Initial Deaths From Disease,264,69,59,19,8,3,0,0,0,0,0,0
+1,85,84,76,1,0,0,0,0,64,1,-1--1--1,,1|(286,103)|
+10,86,Population without Disease,552,121,64,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,87,86,30,1,0,0,0,0,64,0,-1--1--1,,1|(558,243)|
+1,88,86,80,1,0,0,0,0,64,0,-1--1--1,,1|(481,172)|
+1,89,30,21,1,0,0,0,0,64,0,-1--1--1,,1|(791,527)|
+10,90,Effect of People At Risk on Average Time to Decide to Leave Foreign Country,538,650,87,28,8,3,0,0,0,0,0,0
+1,91,90,21,1,0,0,0,0,64,0,-1--1--1,,1|(581,622)|
+10,92,Population in Safe Havens,711,786,62,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,93,92,30,1,0,0,0,0,64,0,-1--1--1,,1|(794,741)|
+1,94,92,47,1,0,0,0,0,64,0,-1--1--1,,1|(442,724)|
+1,95,37,16,1,0,0,0,0,64,0,-1--1--1,,1|(903,405)|
+1,96,32,16,1,0,0,0,0,64,0,-1--1--1,,1|(1078,437)|
+10,97,Families Processed At The Same Time By Immigration Officer,1050,510,86,28,8,3,0,0,0,0,0,0
+1,98,97,16,1,0,0,0,0,64,0,-1--1--1,,1|(1004,468)|
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Border Crossing Resources
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|96,96,100,0
+10,1,Border Crossing Resources,581,313,63,34,3,131,0,0,0,0,0,0
+10,2,Refugees,305,537,39,11,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,3,Initial Border Crossing Resources,571,438,64,19,8,3,0,0,0,0,0,0
+12,4,48,330,307,10,8,0,3,0,0,-1,0,0,0
+1,5,7,1,4,0,0,22,0,0,0,-1--1--1,,1|(476,307)|
+1,6,7,4,100,0,0,22,0,0,0,-1--1--1,,1|(381,307)|
+11,7,48,429,307,6,8,34,3,0,0,1,0,0,0
+10,8,Change in Border Crossing Resources,429,334,64,19,40,3,0,0,-1,0,0,0
+10,9,Desired Border Crossing Resources,225,435,64,19,8,3,0,0,0,0,0,0
+10,10,Average Time to Add Border Crossing Resources,255,209,83,25,8,131,0,0,0,0,0,0
+10,11,Attempted Border Crossings per Month,1074,405,72,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,12,9,8,1,0,0,0,0,64,0,-1--1--1,,1|(321,435)|
+1,13,1,8,1,0,0,0,0,64,0,-1--1--1,,1|(529,365)|
+1,14,10,8,1,0,0,0,0,64,0,-1--1--1,,1|(244,272)|
+1,15,3,1,0,0,0,0,0,64,1,-1--1--1,,1|(574,389)|
+10,16,Normal Refugees,461,507,34,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,17,Normal Border Crossing Resources,64,515,68,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,18,Effect of Refugees on Desired Border Crossing Resources,77,340,80,28,8,3,0,0,0,0,0,0
+1,19,18,9,1,0,0,0,0,64,0,-1--1--1,,1|(112,422)|
+1,20,17,9,1,0,0,0,0,64,0,-1--1--1,,1|(144,501)|
+1,21,2,9,1,0,0,0,0,64,0,-1--1--1,,1|(264,515)|
+1,22,16,9,1,0,0,0,0,64,0,-1--1--1,,1|(358,501)|
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Immigration Officers
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|96,96,100,0
+10,1,Immigration Officers,642,259,56,35,3,131,0,0,0,0,0,0
+12,2,48,405,254,10,8,0,3,0,0,-1,0,0,0
+1,3,5,1,4,0,0,22,0,0,0,-1--1--1,,1|(546,254)|
+1,4,5,2,100,0,0,22,0,0,0,-1--1--1,,1|(454,254)|
+11,5,48,500,254,6,8,34,3,0,0,1,0,0,0
+10,6,Change in Immigration Officers,500,282,73,20,40,131,0,0,-1,0,0,0
+1,7,1,6,1,0,0,0,0,64,0,-1--1--1,,1|(607,310)|
+10,8,Initial Immigration Officers,649,120,57,19,8,3,0,0,0,0,0,0
+1,9,8,1,1,0,0,0,0,64,1,-1--1--1,,1|(702,225)|
+10,10,Investment in Immigration,304,447,47,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,11,Average Cost of Immigration Officers,687,470,65,19,8,3,0,0,0,0,0,0
+10,12,Desired Number of Immigration Officers,443,399,65,19,8,3,0,0,0,0,0,0
+10,13,Average Time to Train an Immigration Officer,332,129,72,19,8,3,0,0,0,0,0,0
+1,14,13,6,1,0,0,0,0,64,0,-1--1--1,,1|(329,228)|
+1,15,10,12,1,0,0,0,0,64,0,-1--1--1,,1|(383,465)|
+1,16,11,12,1,0,0,0,0,64,0,-1--1--1,,1|(567,484)|
+1,17,12,6,1,0,0,0,0,64,0,-1--1--1,,1|(432,341)|
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Food
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|96,96,5,0
+10,1,Food,642,338,56,40,3,131,0,0,0,0,0,0
+12,2,48,393,333,10,8,0,3,0,0,-1,0,0,0
+1,3,5,1,4,0,0,22,0,0,0,-1--1--1,,1|(543,333)|
+1,4,5,2,100,0,0,22,0,0,0,-1--1--1,,1|(445,333)|
+11,5,48,494,333,6,8,34,3,0,0,1,0,0,0
+10,6,Food Growth,494,352,44,11,40,3,0,0,-1,0,0,0
+12,7,48,944,331,10,8,0,3,0,0,-1,0,0,0
+1,8,10,7,4,0,0,22,0,0,0,-1--1--1,,1|(878,331)|
+1,9,10,1,100,0,0,22,0,0,0,-1--1--1,,1|(754,331)|
+11,10,48,816,331,6,8,34,3,0,0,1,0,0,0
+10,11,Food Consumption,816,358,43,19,40,3,0,0,-1,0,0,0
+12,12,48,631,146,10,8,0,3,0,0,-1,0,0,0
+1,13,15,1,4,0,0,22,0,0,0,-1--1--1,,1|(631,265)|
+1,14,15,12,100,0,0,22,0,0,0,-1--1--1,,1|(631,187)|
+11,15,48,631,226,8,6,33,3,0,0,4,0,0,0
+10,16,Food Aid,671,226,32,11,40,3,0,0,-1,0,0,0
+10,17,Food Growth Rate,390,444,60,11,8,3,0,0,0,0,0,0
+10,18,Famine,253,438,24,11,8,3,0,0,0,0,0,0
+10,19,Normal Food Growth Rate,315,551,44,19,8,3,0,0,0,0,0,0
+1,20,19,17,1,0,0,0,0,64,0,-1--1--1,,1|(313,511)|
+1,21,18,17,1,0,0,0,0,64,0,-1--1--1,,1|(296,424)|
+1,22,17,6,1,0,0,0,0,64,0,-1--1--1,,1|(409,396)|
+1,23,1,6,1,0,0,0,0,64,0,-1--1--1,,1|(600,409)|
+10,24,Average Consumption per Family,1060,225,71,19,8,3,0,0,0,0,0,0
+1,25,24,11,1,0,0,0,0,64,0,-1--1--1,,1|(979,350)|
+1,26,1,11,1,0,0,0,0,64,0,-1--1--1,,1|(687,392)|
+10,27,Population in Foreign Country,948,438,57,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,28,Initial Food,808,453,37,11,8,3,0,0,0,0,0,0
+1,29,28,1,1,0,0,0,0,64,1,-1--1--1,,1|(756,465)|
+10,30,Population with Enough Food,889,112,49,19,8,3,0,0,0,0,0,0
+1,31,24,30,1,0,0,0,0,64,0,-1--1--1,,1|(1033,186)|
+1,32,1,30,1,0,0,0,0,64,0,-1--1--1,,1|(749,285)|
+10,33,Investment in Food Aid,765,72,47,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,34,Months,1103,161,55,11,8,3,0,0,0,0,0,0
+1,35,34,30,1,0,0,0,0,64,0,-1--1--1,,1|(1045,118)|
+12,36,48,644,528,10,8,0,3,0,0,-1,0,0,0
+1,37,39,36,4,0,0,22,0,0,0,-1--1--1,,1|(644,487)|
+1,38,39,1,100,0,0,22,0,0,0,-1--1--1,,1|(644,410)|
+11,39,48,644,449,8,6,33,3,0,0,4,0,0,0
+10,40,Export Food,693,449,41,11,40,3,0,0,-1,0,0,0
+1,41,24,40,1,0,0,0,0,64,0,-1--1--1,,1|(1029,427)|
+1,42,1,40,1,0,0,0,0,64,0,-1--1--1,,1|(671,403)|
+1,43,34,40,1,0,0,0,0,64,0,-1--1--1,,1|(1071,431)|
+10,44,Effect of Violence on Famine,223,518,57,19,8,3,0,0,0,0,0,0
+1,45,44,18,1,0,0,0,0,64,0,-1--1--1,,1|(245,477)|
+10,46,Effect of Violence on Distribution of Food Aid,316,59,78,31,8,131,0,0,0,0,0,0
+1,47,46,16,1,0,0,0,0,64,0,-1--1--1,,1|(509,100)|
+10,48,Normal Food,925,259,44,11,8,3,0,0,0,0,0,0
+1,49,48,11,1,0,0,0,0,64,0,-1--1--1,,1|(892,309)|
+1,50,27,11,1,0,0,0,0,64,0,-1--1--1,,1|(905,407)|
+1,51,27,40,1,0,0,0,0,64,0,-1--1--1,,1|(889,461)|
+1,52,33,16,1,0,0,0,0,64,0,-1--1--1,,1|(764,130)|
+10,53,Violence Level,397,276,56,11,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,54,53,18,1,0,0,0,0,64,0,-1--1--1,,1|(340,307)|
+10,55,Normal Violence Level Required to Destroy Harvest,229,287,74,28,8,3,0,0,0,0,0,0
+1,56,55,18,1,0,0,0,0,64,0,-1--1--1,,1|(189,352)|
+1,57,53,16,1,0,0,0,0,64,0,-1--1--1,,1|(438,248)|
+10,58,Average Cost of Food Unit,604,57,53,19,8,3,0,0,0,0,0,0
+10,59,Normal Violence Level Required to Disrupt Delivery of Food Aid,307,159,88,28,8,3,0,0,0,0,0,0
+1,60,59,16,1,0,0,0,0,64,0,-1--1--1,,1|(427,153)|
+1,61,58,16,1,0,0,0,0,64,0,-1--1--1,,1|(644,98)|
+1,62,27,30,1,0,0,0,0,64,0,-1--1--1,,1|(991,315)|
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Safe Havens
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|96,96,100,0
+10,1,Safe Havens,588,238,65,48,3,131,0,0,0,0,0,0
+12,2,48,335,243,10,8,0,3,0,0,-1,0,0,0
+1,3,5,1,4,0,0,22,0,0,0,-1--1--1,,1|(481,243)|
+1,4,5,2,100,0,0,22,0,0,0,-1--1--1,,1|(386,243)|
+11,5,48,434,243,6,8,34,3,0,0,1,0,0,0
+10,6,Safe Havens Created,434,270,41,19,40,3,0,0,-1,0,0,0
+12,7,48,845,235,10,8,0,3,0,0,-1,0,0,0
+1,8,10,7,4,0,0,22,0,0,0,-1--1--1,,1|(792,235)|
+1,9,10,1,100,0,0,22,0,0,0,-1--1--1,,1|(695,235)|
+11,10,48,744,235,6,8,34,3,0,0,1,0,0,0
+10,11,Safe Havens Destroyed,744,262,41,19,40,3,0,0,-1,0,0,0
+10,12,Average Time to Destroy Safe Haven,910,352,65,19,8,3,0,0,0,0,0,0
+10,13,Normal Time to Destroy a Safe Haven,1103,481,70,19,8,3,0,0,0,0,0,0
+10,14,Effect of Violence on Time to Destroy a Safe Haven,1136,224,85,19,8,3,0,0,0,0,0,0
+1,15,12,11,1,0,0,0,0,64,0,-1--1--1,,1|(793,338)|
+1,16,13,12,1,0,0,0,0,64,0,-1--1--1,,1|(978,468)|
+1,17,14,12,1,0,0,0,0,64,0,-1--1--1,,1|(1089,289)|
+1,18,1,11,1,0,0,0,0,64,0,-1--1--1,,1|(652,315)|
+10,19,Initial Safe Havens,461,342,58,11,8,3,0,0,0,0,0,0
+1,20,19,1,1,0,0,0,0,64,1,-1--1--1,,1|(455,285)|
+10,21,Average Population per Safe Haven,316,452,63,19,8,3,0,0,0,0,0,0
+10,22,Population in Foreign Country,80,440,57,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,23,1,6,1,0,0,0,0,64,0,-1--1--1,,1|(511,315)|
+10,24,Average Time to Create Safe Haven,233,143,49,30,8,131,0,0,0,0,0,0
+1,25,24,6,1,0,0,0,0,64,0,-1--1--1,,1|(285,260)|
+10,26,Normal Peacekeepers Required to Protect Safe Haven,113,47,83,29,8,131,0,0,0,0,0,0
+10,27,Peacekeepers,398,43,54,11,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,28,Normal Time to Create a Safe Haven,49,204,67,19,8,3,0,0,0,0,0,0
+10,29,Effect of Peacekeepers on Time to Create Safe Haven,427,125,87,19,8,3,0,0,0,0,0,0
+1,30,26,24,1,0,0,0,0,64,0,-1--1--1,,1|(117,98)|
+1,31,27,24,1,0,0,0,0,64,0,-1--1--1,,1|(329,71)|
+1,32,29,24,1,0,0,0,0,64,0,-1--1--1,,1|(326,156)|
+1,33,28,24,1,0,0,0,0,64,0,-1--1--1,,1|(141,198)|
+10,34,Normal Violence Required to Destroy a Safe Haven,1005,142,70,30,8,131,0,0,0,0,0,0
+1,35,34,12,1,0,0,0,0,64,0,-1--1--1,,1|(1004,219)|
+10,36,Violence Level,782,469,56,11,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,37,36,12,1,0,0,0,0,64,0,-1--1--1,,1|(832,455)|
+10,38,Desired Number of Safe Havens,147,324,63,23,8,131,0,0,0,0,0,0
+1,39,22,38,1,0,0,0,0,64,0,-1--1--1,,1|(109,415)|
+1,40,21,38,1,0,0,0,0,64,0,-1--1--1,,1|(213,436)|
+1,41,38,6,1,0,0,0,0,64,0,-1--1--1,,1|(234,345)|
+10,42,Population in Safe Havens,543,574,58,19,8,3,0,0,0,0,0,0
+1,43,1,42,1,0,0,0,0,64,0,-1--1--1,,1|(666,426)|
+1,44,21,42,1,0,0,0,0,64,0,-1--1--1,,1|(369,501)|
+1,45,22,42,1,0,0,0,0,64,0,-1--1--1,,1|(177,511)|
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Businesses
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|96,96,100,0
+10,1,Businesses,664,311,61,38,3,131,0,0,0,0,0,0
+12,2,48,399,308,10,8,0,3,0,0,-1,0,0,0
+1,3,5,1,4,0,0,22,0,0,0,-1--1--1,,1|(557,308)|
+1,4,5,2,100,0,0,22,0,0,0,-1--1--1,,1|(454,308)|
+11,5,48,506,308,6,8,34,3,0,0,1,0,0,0
+10,6,Businesses Created,506,335,35,19,40,3,0,0,-1,0,0,0
+12,7,48,898,310,10,8,0,3,0,0,-1,0,0,0
+1,8,10,7,4,0,0,22,0,0,0,-1--1--1,,1|(850,310)|
+1,9,10,1,100,0,0,22,0,0,0,-1--1--1,,1|(762,310)|
+11,10,48,806,310,6,8,34,3,0,0,1,0,0,0
+10,11,Businesses Destroyed,806,337,35,19,40,3,0,0,-1,0,0,0
+10,12,Average Time to Destroy Business,944,449,55,19,8,3,0,0,0,0,0,0
+10,13,Normal Time to Destroy Business,1104,529,55,19,8,3,0,0,0,0,0,0
+10,14,Effect of Violence on Time to Destroy a Business,1141,343,85,24,8,131,0,0,0,0,0,0
+1,15,1,6,1,0,0,0,0,64,0,-1--1--1,,1|(617,391)|
+1,16,1,11,1,0,0,0,0,64,0,-1--1--1,,1|(736,399)|
+1,17,12,11,1,0,0,0,0,64,0,-1--1--1,,1|(845,414)|
+1,18,14,12,1,0,0,0,0,64,0,-1--1--1,,1|(1090,390)|
+1,19,13,12,1,0,0,0,0,64,0,-1--1--1,,1|(1022,520)|
+10,20,Initial Businesses,617,446,53,11,8,3,0,0,0,0,0,0
+1,21,20,1,1,0,0,0,0,64,1,-1--1--1,,1|(650,414)|
+10,22,Average Jobs per Business,363,76,57,19,8,3,0,0,0,0,0,0
+10,23,Population with Jobs,564,145,49,19,8,3,0,0,0,0,0,0
+1,24,1,23,1,0,0,0,0,64,0,-1--1--1,,1|(600,238)|
+1,25,22,23,1,0,0,0,0,64,0,-1--1--1,,1|(438,81)|
+10,26,Investment in Economic Development,119,320,47,28,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,27,Desired Number of Businesses,291,181,60,19,8,3,0,0,0,0,0,0
+1,28,27,6,1,0,0,0,0,64,0,-1--1--1,,1|(393,193)|
+10,29,Population in Foreign Country,209,43,57,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,30,Average Cost to Setup a Business,150,448,61,19,8,3,0,0,0,0,0,0
+10,31,Violence Level,1052,257,56,11,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,32,Normal Violence Level Required to Destroy a Business,869,207,78,26,8,131,0,0,0,0,0,0
+1,33,32,12,1,0,0,0,0,64,0,-1--1--1,,1|(929,258)|
+1,34,31,12,1,0,0,0,0,64,0,-1--1--1,,1|(1025,330)|
+1,35,29,27,1,0,0,0,0,64,0,-1--1--1,,1|(245,82)|
+1,36,22,27,1,0,0,0,0,64,0,-1--1--1,,1|(336,107)|
+1,37,26,6,1,0,0,0,0,64,0,-1--1--1,,1|(271,266)|
+1,38,30,6,1,0,0,0,0,64,0,-1--1--1,,1|(272,368)|
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Investment
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|96,96,5,0
+10,1,Total Investment,1006,664,52,11,8,3,0,0,0,0,0,0
+10,2,Normal Total Investment,1162,745,43,19,8,3,0,0,0,0,0,0
+10,3,Effect of People in Danger on Total Investment,1141,547,59,28,8,3,0,0,0,0,0,0
+10,4,Effect of Famine on Fraction of Investment in Food Aid,334,420,71,34,8,131,0,0,0,0,0,0
+10,5,Effect of Deaths per Month on Fraction of Investment in Border Control,457,843,74,37,8,131,0,0,0,0,0,0
+10,6,Effect of Violence on Fraction of Investment in Peacekeeping,1858,849,82,39,8,131,0,0,0,0,0,0
+10,7,Effect of Refugees on Fraction of Investment in Immigration,1767,981,101,27,8,131,0,0,0,0,0,0
+10,8,Investment in Food Aid,841,470,42,19,8,3,0,0,0,0,0,0
+10,9,Investment in Immigration,1282,891,42,19,8,3,0,0,0,0,0,0
+10,10,Investment in Economic Development,699,1062,43,28,8,3,0,0,0,0,0,0
+10,11,Population with Enough Food,368,278,54,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,12,Population in Foreign Country,1122,90,57,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,13,Desired Fraction of Investment in Food Aid,562,385,72,31,8,131,0,0,0,0,0,0
+10,14,Desired Fraction of Investment in Peacekeeping,1883,698,72,33,8,131,0,0,0,0,0,0
+10,15,Desired Fraction of Investment in Immigration,1505,1082,72,29,8,131,0,0,0,0,0,0
+10,16,Fraction of Investment in Border Control,572,635,71,19,8,3,0,0,0,0,0,0
+10,17,Refugees,1354,1136,39,11,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,18,11,13,1,0,0,0,0,64,0,-1--1--1,,1|(517,303)|
+1,19,12,13,1,0,0,0,0,64,0,-1--1--1,,1|(760,205)|
+1,20,4,13,1,0,0,0,0,64,0,-1--1--1,,1|(460,369)|
+1,21,1,8,1,0,0,0,0,64,0,-1--1--1,,1|(969,586)|
+1,22,3,1,1,0,0,0,0,64,0,-1--1--1,,1|(1113,582)|
+1,23,12,1,1,0,0,0,0,64,0,-1--1--1,,1|(1281,263)|
+10,24,Population Unaffected,861,624,40,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,25,24,1,1,0,0,0,0,64,0,-1--1--1,,1|(890,629)|
+1,26,2,1,1,0,0,0,0,64,0,-1--1--1,,1|(1114,734)|
+1,27,6,14,1,0,0,0,0,64,0,-1--1--1,,1|(1862,791)|
+1,28,12,14,1,0,0,0,0,64,0,-1--1--1,,1|(1597,329)|
+1,29,17,15,1,0,0,0,0,64,0,-1--1--1,,1|(1407,1134)|
+1,30,7,15,1,0,0,0,0,64,0,-1--1--1,,1|(1600,1058)|
+1,31,1,9,1,0,0,0,0,64,0,-1--1--1,,1|(1086,774)|
+10,32,Fraction of Remaining Investment in Food Aid,645,465,75,19,8,3,0,0,0,0,0,0
+1,33,13,32,1,0,0,0,0,64,0,-1--1--1,,1|(606,425)|
+1,34,16,32,1,0,0,0,0,64,0,-1--1--1,,1|(600,594)|
+1,35,32,8,1,0,0,0,0,64,0,-1--1--1,,1|(751,494)|
+10,36,Fraction of Remaining Investment in Peacekeeping,1686,699,70,28,8,3,0,0,0,0,0,0
+1,37,14,36,1,0,0,0,0,64,0,-1--1--1,,1|(1860,724)|
+1,38,16,36,1,0,0,0,0,64,0,-1--1--1,,1|(988,589)|
+1,39,32,36,1,0,0,0,0,64,0,-1--1--1,,1|(1211,325)|
+10,40,Fraction of Remaining Investment in Immigration,1399,970,84,19,8,3,0,0,0,0,0,0
+1,41,15,40,1,0,0,0,0,64,0,-1--1--1,,1|(1415,1038)|
+1,42,32,40,1,0,0,0,0,64,0,-1--1--1,,1|(814,864)|
+1,43,16,40,1,0,0,0,0,64,0,-1--1--1,,1|(849,983)|
+1,44,8,10,1,0,0,0,0,64,0,-1--1--1,,1|(674,649)|
+1,45,1,10,1,0,0,0,0,64,0,-1--1--1,,1|(838,744)|
+1,46,9,10,1,0,0,0,0,64,0,-1--1--1,,1|(1064,1069)|
+1,47,40,9,1,0,0,0,0,64,0,-1--1--1,,1|(1334,945)|
+10,48,Normal Deaths per Month From Unsuccessful Border Crossings,368,731,68,40,8,131,0,0,0,0,0,0
+1,49,48,16,1,0,0,0,0,64,0,-1--1--1,,1|(442,723)|
+1,50,5,16,1,0,0,0,0,64,0,-1--1--1,,1|(503,788)|
+10,51,Effect of Deaths per Month on Total Investment,923,861,64,28,8,3,0,0,0,0,0,0
+1,52,51,1,1,0,0,0,0,64,0,-1--1--1,,1|(946,774)|
+10,53,Fraction of Remaining Investment in Diplomacy,1498,330,81,19,8,3,0,0,0,0,0,0
+10,54,Desired Fraction of Investment in Diplomacy,1753,335,78,19,8,3,0,0,0,0,0,0
+1,55,54,53,1,0,0,0,0,64,0,-1--1--1,,1|(1633,288)|
+1,56,36,40,1,0,0,0,0,64,0,-1--1--1,,1|(1615,898)|
+1,57,53,40,1,0,0,0,0,64,0,-1--1--1,,1|(1588,636)|
+1,58,12,54,1,0,0,0,0,64,0,-1--1--1,,1|(1490,100)|
+10,59,Effect of Violence on Fraction of Investment in Diplomacy,1890,266,81,28,8,3,0,0,0,0,0,0
+1,60,59,54,1,0,0,0,0,64,0,-1--1--1,,1|(1803,326)|
+1,61,32,53,1,0,0,0,0,64,0,-1--1--1,,1|(1093,235)|
+10,62,Normal Deaths per Month,1066,865,61,19,8,3,0,0,0,0,0,0
+1,63,62,1,1,0,0,0,0,64,0,-1--1--1,,1|(1020,782)|
+10,64,Avoidable Deaths per Month,878,772,39,30,8,130,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,65,64,1,1,0,0,0,0,64,0,-1--1--1,,1|(969,717)|
+10,66,Investment in Border Control,758,698,49,19,8,3,0,0,0,0,0,0
+1,67,1,66,1,0,0,0,0,64,0,-1--1--1,,1|(925,668)|
+1,68,16,66,1,0,0,0,0,64,0,-1--1--1,,1|(691,648)|
+1,69,66,10,1,0,0,0,0,64,0,-1--1--1,,1|(691,838)|
+10,70,Average Deaths from Unsuccessful Border Crossings per Month,334,575,87,28,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,71,70,16,1,0,0,0,0,64,0,-1--1--1,,1|(450,644)|
+10,72,Desired Fraction of Investment in Health Resources,1098,238,65,28,8,3,0,0,0,0,0,0
+10,73,Effect of Disease on Fraction of Investment in Health Resources,862,268,92,28,8,3,0,0,0,0,0,0
+10,74,Population without Disease,937,180,64,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,75,Fraction of Remaining Investment in Health Services,1048,381,70,28,8,3,0,0,0,0,0,0
+1,76,72,75,1,0,0,0,0,64,0,-1--1--1,,1|(1109,303)|
+1,77,32,75,1,0,0,0,0,64,0,-1--1--1,,1|(913,382)|
+10,78,Investment in Health Services,1087,489,65,19,8,3,0,0,0,0,0,0
+1,79,75,78,1,0,0,0,0,64,0,-1--1--1,,1|(1094,432)|
+1,80,1,78,1,0,0,0,0,64,0,-1--1--1,,1|(1008,586)|
+1,81,73,72,1,0,0,0,0,64,0,-1--1--1,,1|(941,248)|
+1,82,74,72,1,0,0,0,0,64,0,-1--1--1,,1|(1009,204)|
+1,83,12,72,1,0,0,0,0,64,0,-1--1--1,,1|(1070,156)|
+1,84,16,75,1,0,0,0,0,64,0,-1--1--1,,1|(876,421)|
+1,85,75,36,1,0,0,0,0,64,0,-1--1--1,,1|(1565,463)|
+1,86,75,53,1,0,0,0,0,64,0,-1--1--1,,1|(1392,308)|
+1,87,75,40,1,0,0,0,0,64,0,-1--1--1,,1|(1432,524)|
+1,88,78,10,1,0,0,0,0,64,0,-1--1--1,,1|(873,701)|
+10,89,Investment in Peacekeeping,1383,702,45,19,8,3,0,0,0,0,0,0
+1,90,36,89,1,0,0,0,0,64,0,-1--1--1,,1|(1545,759)|
+1,91,1,89,1,0,0,0,0,64,0,-1--1--1,,1|(1146,713)|
+10,92,Investment in Diplomacy,1342,522,42,19,8,3,0,0,0,0,0,0
+1,93,53,92,1,0,0,0,0,64,0,-1--1--1,,1|(1463,433)|
+1,94,1,92,1,0,0,0,0,64,0,-1--1--1,,1|(1116,669)|
+1,95,89,10,1,0,0,0,0,64,0,-1--1--1,,1|(1117,962)|
+1,96,92,10,1,0,0,0,0,64,0,-1--1--1,,1|(1208,791)|
+10,97,Population in Safe Havens,1888,515,62,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,98,97,14,1,0,0,0,0,64,0,-1--1--1,,1|(1907,631)|
+1,99,97,54,1,0,0,0,0,64,0,-1--1--1,,1|(1848,443)|
+10,100,Normal Refugees,1639,1138,55,11,8,3,0,0,-1,0,0,0
+1,101,100,15,1,0,0,0,0,64,0,-1--1--1,,1|(1571,1127)|
+1,102,53,36,1,0,0,0,0,64,0,-1--1--1,,1|(1640,471)|
+1,103,16,53,1,0,0,0,0,64,0,-1--1--1,,1|(961,447)|
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Death Rate
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|96,96,100,0
+10,1,Avoidable Deaths per Month,472,429,51,30,8,131,0,0,0,0,0,0
+10,2,Deaths from Starvation,429,117,44,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,3,Deaths from Violence,228,192,44,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,4,Time,440,216,26,11,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,5,Average Deaths by Violence per Month,324,296,64,27,8,131,0,0,0,0,0,0
+10,6,Average Deaths by Starvation per Month,473,328,68,28,8,131,0,0,0,0,0,0
+1,7,3,5,1,0,0,0,0,64,0,-1--1--1,,1|(276,215)|
+1,8,2,6,1,0,0,0,0,64,0,-1--1--1,,1|(396,189)|
+1,9,4,5,1,0,0,0,0,64,0,-1--1--1,,1|(376,245)|
+1,10,4,6,1,0,0,0,0,64,0,-1--1--1,,1|(458,257)|
+1,11,5,1,1,0,0,0,0,64,0,-1--1--1,,1|(349,341)|
+1,12,6,1,1,0,0,0,0,64,0,-1--1--1,,1|(485,363)|
+10,13,Average Deaths from Unsuccessful Border Crossings per Month,620,299,91,29,8,131,0,0,0,0,0,0
+1,14,13,1,1,0,0,0,0,64,0,-1--1--1,,1|(593,336)|
+1,15,4,13,1,0,0,0,0,64,0,-1--1--1,,1|(507,226)|
+10,16,Deaths From Disease,169,352,47,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,17,Average Deaths From Disease Per Month,285,446,70,28,8,131,0,0,0,0,0,0
+1,18,16,17,1,0,0,0,0,64,0,-1--1--1,,1|(186,396)|
+1,19,4,17,1,0,0,0,0,64,0,-1--1--1,,1|(372,324)|
+1,20,17,1,1,0,0,0,0,64,0,-1--1--1,,1|(371,489)|
+10,21,Cumulative Avoidable Deaths,219,52,57,19,8,3,0,0,0,0,0,0
+1,22,16,21,1,0,0,0,0,64,0,-1--1--1,,1|(142,275)|
+1,23,3,21,1,0,0,0,0,64,0,-1--1--1,,1|(225,170)|
+1,24,2,21,1,0,0,0,0,64,0,-1--1--1,,1|(334,148)|
+10,25,Deaths from Unsuccessful Border Crossings,662,166,66,28,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,26,25,21,1,0,0,0,0,64,0,-1--1--1,,1|(508,69)|
+1,27,25,13,1,0,0,0,0,64,0,-1--1--1,,1|(693,246)|
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Border Crossings
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|96,96,5,0
+10,1,Successful Border Crossings,1276,343,52,35,3,131,0,0,0,0,0,0
+10,2,Initial Unsuccessful Border Crossings,1324,570,60,19,8,131,0,0,0,0,0,0
+10,3,Initial Successful Border Crossings,1278,266,56,19,8,3,0,0,0,0,0,0
+10,4,Normal Fraction of Unsuccessful Border Crossings,1495,124,66,28,8,131,0,0,0,0,0,0
+10,5,Effect of Border Crossing Resources on Fraction of Unsuccessful Border Crossings,1632,440,99,28,8,131,0,0,0,0,0,0
+10,6,Fraction of Border Crossings that are Unsuccessful,1488,303,60,28,8,131,0,0,0,0,0,0
+10,7,Attempted Border Crossings per Month,770,400,67,19,8,3,0,0,0,0,0,0
+10,8,Effect of Successful Border Crossings on Attempted Border Crossings per Month,433,228,102,28,8,3,0,0,0,0,0,0
+10,9,Normal Successful Border Crossings per Month,403,307,69,28,8,131,0,0,0,0,0,0
+10,10,Effect of Unsuccessful Border Crossings on Attempted Border Crossings per Month,418,363,102,28,8,131,0,0,0,0,0,0
+1,11,4,6,1,0,0,0,0,64,0,-1--1--1,,1|(1474,188)|
+1,12,5,6,1,0,0,0,0,64,0,-1--1--1,,1|(1618,388)|
+10,13,Normal Border Crossing Resources,1269,42,64,19,8,3,0,0,0,0,0,0
+10,14,Effect of Border Crossing Resources on Attempted Border Crossing per Month,521,133,104,28,8,3,0,0,0,0,0,0
+10,15,Border Crossing Resources,769,117,58,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,16,Border Crossing Resources,1568,195,58,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,17,13,6,1,0,0,0,0,64,0,-1--1--1,,1|(1389,148)|
+10,18,Normal Attempted Border Crossings Per Month,669,644,69,28,8,3,0,0,0,0,0,0
+1,19,18,7,1,0,0,0,0,64,0,-1--1--1,,1|(696,549)|
+10,20,Unsuccessful Border Crossings,1278,474,48,32,3,131,0,0,0,0,0,0
+10,21,Fraction of Deaths per Unsuccessful Border Crossing,1644,833,72,28,8,3,0,0,0,0,0,0
+10,22,Normal Border Control Resources,587,573,68,19,8,3,0,0,0,0,0,0
+10,23,Investment in Border Control,486,934,54,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,24,Effect of Border Control on Attempted Border Crossings Per Month,448,489,95,28,8,3,0,0,0,0,0,0
+10,25,Normal Unsuccessful Border Crossings per Month,503,424,69,28,8,131,0,0,0,0,0,0
+12,26,48,1084,349,10,8,0,3,0,0,-1,0,0,0
+1,27,29,1,4,0,0,22,0,0,0,-1--1--1,,1|(1194,349)|
+1,28,29,26,100,0,0,22,0,0,0,-1--1--1,,1|(1123,349)|
+11,29,48,1159,349,6,8,34,3,0,0,1,0,0,0
+10,30,Successful Border Crossings Per Month,1159,376,68,19,40,3,0,0,-1,0,0,0
+12,31,48,1031,472,10,8,0,3,0,0,-1,0,0,0
+1,32,34,20,4,0,0,22,0,0,0,-1--1--1,,1|(1185,472)|
+1,33,34,31,100,0,0,22,0,0,0,-1--1--1,,1|(1085,472)|
+11,34,48,1135,472,6,8,34,3,0,0,1,0,0,0
+10,35,Unsuccessful Border Crossings Per Month,1135,499,68,19,40,3,0,0,-1,0,0,0
+1,36,6,30,1,0,0,0,0,64,0,-1--1--1,,1|(1406,405)|
+1,37,6,35,1,0,0,0,0,64,0,-1--1--1,,1|(1444,451)|
+1,38,7,35,1,0,0,0,0,64,0,-1--1--1,,1|(983,506)|
+1,39,7,30,1,0,0,0,0,64,0,-1--1--1,,1|(1035,405)|
+10,40,Effect of Refugees on Attempted Border Crossings Per Month,863,663,92,28,8,3,0,0,0,0,0,0
+1,41,2,20,0,0,0,0,0,64,1,-1--1--1,,1|(1307,534)|
+1,42,3,1,0,0,0,0,0,64,1,-1--1--1,,1|(1277,289)|
+10,43,Effect of Border Crossing Resources on Families per Border Crossing,1848,203,84,28,8,3,0,0,0,0,0,0
+10,44,Normal Families per Border Crossing,1938,345,65,19,8,3,0,0,0,0,0,0
+10,45,Families per Border Crossing,1745,379,64,19,8,3,0,0,0,0,0,0
+1,46,13,45,1,0,0,0,0,64,0,-1--1--1,,1|(1553,67)|
+1,47,16,45,1,0,0,0,0,64,0,-1--1--1,,1|(1676,264)|
+1,48,44,45,1,0,0,0,0,64,0,-1--1--1,,1|(1823,406)|
+1,49,43,45,1,0,0,0,0,64,0,-1--1--1,,1|(1820,301)|
+10,50,Time,2147,594,26,11,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,51,Time,968,329,26,11,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,52,Refugees,769,597,39,11,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,53,Time,1265,655,26,11,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,54,16,6,1,0,0,0,0,64,0,-1--1--1,,1|(1552,235)|
+10,55,Deaths from Unsuccessful Border Crossings,1755,651,63,33,3,131,0,0,0,0,0,0
+12,56,48,1482,652,10,8,0,3,0,0,-1,0,0,0
+1,57,59,55,4,0,0,22,0,0,0,-1--1--1,,1|(1645,652)|
+1,58,59,56,100,0,0,22,0,0,0,-1--1--1,,1|(1539,652)|
+11,59,48,1592,652,6,8,34,3,0,0,1,0,0,0
+10,60,Deaths Per Month from Unsuccessful Border Crossings,1592,688,75,28,40,3,0,0,-1,0,0,0
+1,61,21,60,1,0,0,0,0,64,0,-1--1--1,,1|(1580,766)|
+1,62,6,60,1,0,0,0,0,64,0,-1--1--1,,1|(1529,556)|
+1,63,7,60,1,0,0,0,0,64,0,-1--1--1,,1|(1249,727)|
+1,64,45,60,1,0,0,0,0,64,0,-1--1--1,,1|(1670,607)|
+10,65,Initial Deaths from Unsuccessful Border Crossings,1760,730,66,28,8,3,0,0,0,0,0,0
+1,66,65,55,1,0,0,0,0,64,1,-1--1--1,,1|(1733,693)|
+10,67,Normal Refugees,922,610,34,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,68,Average Successful Border Crossings per Month,1042,208,69,28,8,3,0,0,0,0,0,0
+10,69,Average Unsuccessful Border Crossings per Month,1070,573,70,28,8,3,0,0,0,0,0,0
+1,70,1,68,1,0,0,0,0,64,0,-1--1--1,,1|(1163,277)|
+1,71,51,68,1,0,0,0,0,64,0,-1--1--1,,1|(1007,298)|
+1,72,51,7,1,0,0,0,0,64,0,-1--1--1,,1|(910,338)|
+1,73,13,7,1,0,0,0,0,64,0,-1--1--1,,1|(1106,90)|
+1,74,15,7,1,0,0,0,0,64,0,-1--1--1,,1|(782,202)|
+1,75,14,7,1,0,0,0,0,64,0,-1--1--1,,1|(640,177)|
+1,76,8,7,1,0,0,0,0,64,0,-1--1--1,,1|(589,254)|
+1,77,9,7,1,0,0,0,0,64,0,-1--1--1,,1|(539,302)|
+1,78,10,7,1,0,0,0,0,64,0,-1--1--1,,1|(567,346)|
+1,79,25,7,1,0,0,0,0,64,0,-1--1--1,,1|(565,397)|
+1,80,24,7,1,0,0,0,0,64,0,-1--1--1,,1|(632,456)|
+10,81,Border Control Resources,439,566,54,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,82,81,7,1,0,0,0,0,64,0,-1--1--1,,1|(575,516)|
+1,83,22,7,1,0,0,0,0,64,0,-1--1--1,,1|(666,513)|
+1,84,40,7,1,0,0,0,0,64,0,-1--1--1,,1|(799,537)|
+1,85,52,7,1,0,0,0,0,64,0,-1--1--1,,1|(755,530)|
+1,86,67,7,1,0,0,0,0,64,0,-1--1--1,,1|(850,540)|
+1,87,20,69,1,0,0,0,0,64,0,-1--1--1,,1|(1197,561)|
+1,88,53,69,1,0,0,0,0,64,0,-1--1--1,,1|(1218,627)|
+1,89,69,7,1,0,0,0,0,64,0,-1--1--1,,1|(919,528)|
+1,90,68,7,1,0,0,0,0,64,0,-1--1--1,,1|(903,280)|
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Disease
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|96,96,100,0
+10,1,Average Population per Safe Haven,384,-20,68,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,2,Effect of Crowding on Disease Rate,534,118,71,19,8,3,0,0,0,0,0,0
+10,3,Normal Infection Rate,318,375,52,19,8,3,0,0,0,0,0,0
+10,4,Initial Population With Disease,639,396,53,19,8,3,0,0,0,0,0,0
+10,5,Average Time to Cure Disease,1017,210,54,19,8,3,0,0,0,0,0,0
+10,6,Population With Disease,614,279,48,27,3,131,0,0,0,0,0,0
+12,7,48,395,274,10,8,0,3,0,0,-1,0,0,0
+1,8,10,6,4,0,0,22,0,0,0,-1--1--1,,1|(528,274)|
+1,9,10,7,100,0,0,22,0,0,0,-1--1--1,,1|(442,274)|
+11,10,48,485,274,6,8,34,3,0,0,1,0,0,0
+10,11,Infections Per Month,485,294,65,12,40,131,0,0,-1,0,0,0
+12,12,48,836,280,10,8,0,3,0,0,-1,0,0,0
+1,13,15,12,4,0,0,22,0,0,0,-1--1--1,,1|(788,280)|
+1,14,15,6,100,0,0,22,0,0,0,-1--1--1,,1|(700,280)|
+11,15,48,744,280,6,8,34,3,0,0,1,0,0,0
+10,16,Cured Per Month,744,299,56,11,40,3,0,0,-1,0,0,0
+1,17,2,11,1,0,0,0,0,64,0,-1--1--1,,1|(455,163)|
+1,18,3,11,1,0,0,0,0,64,0,-1--1--1,,1|(394,370)|
+1,19,6,11,1,0,0,0,0,64,0,-1--1--1,,1|(594,326)|
+10,20,Population in Foreign Country,343,482,57,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,21,Population without Disease,534,469,59,19,8,3,0,0,0,0,0,0
+1,22,20,21,1,0,0,0,0,64,0,-1--1--1,,1|(419,524)|
+1,23,6,21,1,0,0,0,0,64,0,-1--1--1,,1|(544,376)|
+1,24,6,16,1,0,0,0,0,64,0,-1--1--1,,1|(662,335)|
+10,25,Investment in Health Services,1313,500,55,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,26,4,6,1,0,0,0,0,64,1,-1--1--1,,1|(611,363)|
+10,27,Desired Number of Safe Havens,208,-8,67,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,28,Population in Safe Havens,316,106,62,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,29,28,11,1,0,0,0,0,64,0,-1--1--1,,1|(392,219)|
+10,30,Normal Families in Safe Havens,134,282,60,19,8,3,0,0,0,0,0,0
+10,31,Crowding Fraction,269,226,59,11,8,3,0,0,0,0,0,0
+1,32,28,31,1,0,0,0,0,64,0,-1--1--1,,1|(304,160)|
+1,33,30,31,1,0,0,0,0,64,0,-1--1--1,,1|(225,273)|
+1,34,31,11,1,0,0,0,0,64,0,-1--1--1,,1|(291,264)|
+10,35,Medical Practitioners,876,461,48,18,8,130,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,36,Average People a Medical Practitioner Can Handle,689,505,80,28,8,3,0,0,0,0,0,0
+1,37,36,16,1,0,0,0,0,64,0,-1--1--1,,1|(749,464)|
+1,38,35,16,1,0,0,0,0,64,0,-1--1--1,,1|(860,397)|
+1,39,5,16,1,0,0,0,0,64,0,-1--1--1,,1|(985,243)|
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Border Control Resources
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|96,96,100,0
+10,1,Border Control Resources,625,276,59,32,3,131,0,0,0,0,0,0
+12,2,48,393,275,10,8,0,3,0,0,-1,0,0,0
+1,3,5,1,4,0,0,22,0,0,0,-1--1--1,,1|(528,275)|
+1,4,5,2,100,0,0,22,0,0,0,-1--1--1,,1|(440,275)|
+11,5,48,484,275,6,8,34,3,0,0,1,0,0,0
+10,6,Change in Border Control Resources,484,302,60,19,40,3,0,0,-1,0,0,0
+10,7,Investment in Border Control,360,421,54,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,8,Average Cost of Border Control Resources,569,500,78,19,8,3,0,0,0,0,0,0
+10,9,Desired Border Control Resources,621,413,60,19,8,3,0,0,0,0,0,0
+1,10,7,9,1,0,0,0,0,64,0,-1--1--1,,1|(437,467)|
+1,11,8,9,1,0,0,0,0,64,0,-1--1--1,,1|(623,482)|
+1,12,1,6,1,0,0,0,0,64,0,-1--1--1,,1|(602,343)|
+1,13,9,6,1,0,0,0,0,64,0,-1--1--1,,1|(521,410)|
+10,14,Average Time to Deploy Border Control Resources,382,174,84,19,8,3,0,0,0,0,0,0
+1,15,14,6,1,0,0,0,0,64,0,-1--1--1,,1|(389,212)|
+10,16,Initial Border Control Resources,596,132,60,19,8,3,0,0,0,0,0,0
+1,17,16,1,0,0,0,0,0,64,1,-1--1--1,,1|(607,190)|
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Health Services
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|96,96,100,0
+10,1,Medical Practitioners,627,267,70,36,3,131,0,0,0,0,0,0
+12,2,48,360,261,10,8,0,3,0,0,-1,0,0,0
+1,3,5,1,4,0,0,22,0,0,0,-1--1--1,,1|(513,261)|
+1,4,5,2,100,0,0,22,0,0,0,-1--1--1,,1|(413,261)|
+11,5,48,463,261,6,8,34,3,0,0,1,0,0,0
+10,6,Change in Medical Practitioners,463,288,60,19,40,3,0,0,-1,0,0,0
+10,7,Initial Medical Practitioners,598,120,45,19,8,3,0,0,0,0,0,0
+10,8,Average Time to Hire Medical Practitioners,338,137,69,19,8,3,0,0,0,0,0,0
+10,9,Desired Number of Medical Practitioners,313,436,60,28,8,131,0,0,0,0,0,0
+10,10,Average Cost of Medical Practitioners,503,503,67,24,8,131,0,0,0,0,0,0
+10,11,Investment in Health Services,136,331,55,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,12,11,9,1,0,0,0,0,64,0,-1--1--1,,1|(154,378)|
+1,13,10,9,1,0,0,0,0,64,0,-1--1--1,,1|(407,516)|
+1,14,9,6,1,0,0,0,0,64,0,-1--1--1,,1|(404,411)|
+1,15,1,6,1,0,0,0,0,64,0,-1--1--1,,1|(603,340)|
+1,16,8,6,1,0,0,0,0,64,0,-1--1--1,,1|(347,181)|
+1,17,7,1,1,0,0,0,0,64,1,-1--1--1,,1|(615,160)|
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Peacekeepers
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|96,96,100,0
+10,1,Peacekeepers,652,272,64,32,3,131,0,0,0,0,0,0
+12,2,48,389,268,10,8,0,3,0,0,-1,0,0,0
+1,3,5,1,4,0,0,22,0,0,0,-1--1--1,,1|(542,268)|
+1,4,5,2,100,0,0,22,0,0,0,-1--1--1,,1|(442,268)|
+11,5,48,491,268,6,8,34,3,0,0,1,0,0,0
+10,6,Change in Peacekeepers,491,295,45,19,40,3,0,0,-1,0,0,0
+10,7,Desired Number of Peacekeepers,249,418,62,19,8,3,0,0,0,0,0,0
+10,8,Average Cost of Peacekeepers,560,494,53,19,8,3,0,0,0,0,0,0
+10,9,Initial Peacekeepers,635,112,45,19,8,3,0,0,0,0,0,0
+10,10,Average Time to Deploy Peacekeepers,345,128,81,23,8,131,0,0,0,0,0,0
+10,11,Investment in Peacekeeping,122,263,49,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,12,11,7,1,0,0,0,0,64,0,-1--1--1,,1|(119,330)|
+1,13,8,7,1,0,0,0,0,64,0,-1--1--1,,1|(429,508)|
+1,14,7,6,1,0,0,0,0,64,0,-1--1--1,,1|(391,420)|
+1,15,1,6,1,0,0,0,0,64,0,-1--1--1,,1|(625,343)|
+1,16,10,6,1,0,0,0,0,64,0,-1--1--1,,1|(341,231)|
+1,17,9,1,1,0,0,0,0,64,1,-1--1--1,,1|(663,182)|
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Violence Level
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|96,96,100,0
+10,1,Violence Level,689,264,61,35,3,131,0,0,0,0,0,0
+12,2,48,445,264,10,8,0,3,0,0,-1,0,0,0
+1,3,5,1,4,0,0,22,0,0,0,-1--1--1,,1|(587,264)|
+1,4,5,2,100,0,0,22,0,0,0,-1--1--1,,1|(495,264)|
+11,5,48,541,264,6,8,34,3,0,0,1,0,0,0
+10,6,Change in Violence Level,541,291,48,19,40,3,0,0,-1,0,0,0
+10,7,Average Time to Change Violence Level,446,143,74,19,8,3,0,0,0,0,0,0
+10,8,Investment in Peacekeeping,1192,271,49,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,9,Investment in Diplomacy,1205,415,47,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,10,1,6,1,0,0,0,0,64,0,-1--1--1,,1|(650,343)|
+1,11,7,6,1,0,0,0,0,64,0,-1--1--1,,1|(414,247)|
+10,12,Initial Violence Level,690,91,47,19,8,3,0,0,0,0,0,0
+1,13,12,1,1,0,0,0,0,64,1,-1--1--1,,1|(706,146)|
+10,14,Desired Violence Level,363,416,55,19,8,3,0,0,0,0,0,0
+10,15,Peacekeepers,193,291,54,11,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,16,Diplomatic Effort,189,525,57,21,8,130,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,17,16,14,1,0,0,0,0,64,0,-1--1--1,,1|(288,502)|
+1,18,15,14,1,0,0,0,0,64,0,-1--1--1,,1|(263,309)|
+1,19,1,14,1,0,0,0,0,64,0,-1--1--1,,1|(659,392)|
+10,20,Violence Escalation Rate,444,533,49,19,8,3,0,0,0,0,0,0
+1,21,20,14,1,0,0,0,0,64,0,-1--1--1,,1|(410,507)|
+10,22,Average Peacekeepers to Reduce a Battle,166,386,68,26,8,131,0,0,0,0,0,0
+10,23,Average Diplomats to Create a Cease Fire,125,468,77,21,8,131,0,0,0,0,0,0
+1,24,23,14,1,0,0,0,0,64,0,-1--1--1,,1|(223,481)|
+1,25,22,14,1,0,0,0,0,64,0,-1--1--1,,1|(243,380)|
+10,26,Limited Desired Violence Level,481,390,51,19,8,3,0,0,0,0,0,0
+1,27,14,26,1,0,0,0,0,64,0,-1--1--1,,1|(440,430)|
+1,28,26,6,1,0,0,0,0,64,0,-1--1--1,,1|(518,352)|
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Diplomatic Effort
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|96,96,100,0
+10,1,Diplomatic Effort,595,295,58,31,3,131,0,0,0,0,0,0
+12,2,48,337,293,10,8,0,3,0,0,-1,0,0,0
+1,3,5,1,4,0,0,22,0,0,0,-1--1--1,,1|(492,293)|
+1,4,5,2,100,0,0,22,0,0,0,-1--1--1,,1|(391,293)|
+11,5,48,442,293,6,8,34,3,0,0,1,0,0,0
+10,6,Change in Diplomatic Effort,442,321,67,20,40,131,0,0,-1,0,0,0
+10,7,Desired Amount of Diplomatic Effort,311,421,62,19,8,3,0,0,0,0,0,0
+10,8,Investment in Diplomacy,114,338,47,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,9,Average Cost of Diplomatic Effort,113,505,55,19,8,3,0,0,0,0,0,0
+1,10,8,7,1,0,0,0,0,64,0,-1--1--1,,1|(134,383)|
+1,11,9,7,1,0,0,0,0,64,0,-1--1--1,,1|(199,502)|
+10,12,Initial Diplomatic Effort,586,180,57,23,8,131,0,0,0,0,0,0
+1,13,12,1,1,0,0,0,0,64,1,-1--1--1,,1|(578,196)|
+1,14,1,6,1,0,0,0,0,64,0,-1--1--1,,1|(558,357)|
+1,15,7,6,1,0,0,0,0,64,0,-1--1--1,,1|(404,418)|
+10,16,Average Time to Employ Diplomats,246,167,59,19,8,3,0,0,0,0,0,0
+1,17,16,6,1,0,0,0,0,64,0,-1--1--1,,1|(231,257)|
+///---\\\
+:GRAPH Population
+:TITLE Population Calculations
+:X-LABEL Months
+:SCALE
+:VAR Population in Foreign Country
+:VAR Population Unaffected
+:VAR Population with Enough Food
+:VAR Population in Safe Havens
+:VAR Population with Jobs
+:VAR Population without Disease
+
+:GRAPH Refugees
+:TITLE Refugees
+:SCALE
+:VAR Refugees
+:VAR Refugees Who Have Immigrated
+
+:GRAPH Deaths
+:TITLE Avoidable Deaths Per Month
+:SCALE
+:VAR Average Deaths by Starvation per Month
+:VAR Average Deaths by Violence per Month
+:VAR Average Deaths from Unsuccessful Border Crossings per Month
+:VAR Average Deaths From Disease Per Month
+
+:GRAPH Short_Term_Investment
+:TITLE Short Term Investment
+:SCALE
+:VAR Investment in Border Control
+:VAR Investment in Food Aid
+:VAR Investment in Health Services
+:VAR Investment in Diplomacy
+:VAR Investment in Peacekeeping
+
+:GRAPH Total_Investment
+:TITLE Total Investment
+:SCALE
+:VAR Total Investment
+
+:GRAPH Violence
+:TITLE Violence
+:SCALE
+:VAR Violence Level
+
+:GRAPH Long_Term_Investment
+:TITLE Long Term Investment
+:SCALE
+:VAR Investment in Immigration
+:VAR Investment in Economic Development
+:L<%^E!@
+1:Baseline.vdf
+1:Optimal.vdf
+9:Optimal
+22:$,Dollar,Dollars,$s
+22:Hour,Hours
+22:Month,Months
+22:Person,People,Persons
+22:Unit,Units
+22:Week,Weeks
+22:Year,Years
+22:Day,Days
+23:0
+15:0,0,0,0,0,0
+19:100,4
+27:2,
+34:0,
+4:Time
+5:Safe Havens
+35:Date
+36:YYYY-MM-DD
+37:2000
+38:1
+39:1
+40:2
+41:0
+24:0
+25:60
+26:60
