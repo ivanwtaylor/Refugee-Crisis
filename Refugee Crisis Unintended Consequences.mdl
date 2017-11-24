@@ -1,0 +1,228 @@
+{UTF-8}
+Compensation  = A FUNCTION OF( Peacekeepers,Wages of Peacekeepers)
+	~	
+	~		|
+
+Compensation Gap  = A FUNCTION OF( Compensation,Desired Compensation)
+	~	
+	~		|
+
+Desired Compensation  = A FUNCTION OF( )
+	~	
+	~		|
+
+Effort to Reduce Violence  = A FUNCTION OF( Compensation Gap)
+	~	
+	~		|
+
+Farmers' Food Sold in Market  = A FUNCTION OF( Food Needed,Food Produced,Refugees' Food Sold in Market\
+		) ~~|
+Farmers' Food Sold in Market=
+	~	
+	~		|
+
+Farmers' Profit=A FUNCTION OF(Farmers' Profit,Money Earned by Farmers) ~~|
+Farmers' Profit=
+	~	
+	~		|
+
+Food Aid Delivered  = A FUNCTION OF( Stated Food Needed)
+	~	
+	~		|
+
+Food Needed  = A FUNCTION OF( )
+	~	
+	~		|
+
+Food Produced  = A FUNCTION OF( Farmers' Profit)
+	~	
+	~		|
+
+Gap Between Food Aid Delivered and Food Needed  = A FUNCTION OF( Food Aid Delivered,Food Needed\
+		)
+	~	
+	~		|
+
+Level of Violence  = A FUNCTION OF( Effort to Reduce Violence)
+	~	
+	~		|
+
+Money Earned by Farmers  = A FUNCTION OF( Farmers' Food Sold in Market)
+	~	
+	~		|
+
+Money Earned by Refugees  = A FUNCTION OF( Refugees' Food Sold in Market)
+	~	
+	~		|
+
+Need for Peacekeepers  = A FUNCTION OF( Level of Violence)
+	~	
+	~		|
+
+Peacekeepers  = A FUNCTION OF( Need for Peacekeepers)
+	~	
+	~		|
+
+Potential Money Earned by Refugees  = A FUNCTION OF( Food Needed) ~~|
+Potential Money Earned by Refugees=
+	~	
+	~		|
+
+Refugees' Food Sold in Market  = A FUNCTION OF( Gap Between Food Aid Delivered and Food Needed\
+		) ~~|
+Refugees' Food Sold in Market=
+	~	
+	~		|
+
+Stated Food Needed=A FUNCTION OF(Stated Food Needed,Potential Money Earned by Refugees\
+		) ~~|
+Stated Food Needed=
+	~	
+	~		|
+
+Wages of Peacekeepers  = A FUNCTION OF( )
+	~	
+	~		|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 100
+	~	Month
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 0
+	~	Month
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 
+        TIME STEP 
+	~	Month [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 1
+	~	Month [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Peacekeepers
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|96,96,100,0
+10,1,Compensation,680,235,46,11,8,3,0,0,0,0,0,0
+10,3,Level of Violence,417,413,55,11,8,3,0,0,0,0,0,0
+10,4,Effort to Reduce Violence,380,303,53,19,8,3,0,0,0,0,0,0
+10,5,Desired Compensation,241,164,46,19,8,3,0,0,0,0,0,0
+10,6,Peacekeepers,701,360,45,11,8,3,0,0,0,0,0,0
+10,7,Wages of Peacekeepers,834,145,45,19,8,3,0,0,0,0,0,0
+10,9,Need for Peacekeepers,571,440,45,19,8,3,0,0,0,0,0,0
+1,10,7,1,1,0,0,0,0,64,0,-1--1--1,,1|(734,178)|
+1,11,6,1,1,0,0,0,0,64,0,-1--1--1,,1|(699,315)|
+1,15,4,3,1,0,0,0,0,64,0,-1--1--1,,1|(381,320)|
+1,16,3,9,1,0,0,0,0,64,0,-1--1--1,,1|(460,436)|
+1,17,9,6,1,0,0,0,0,64,0,-1--1--1,,1|(647,423)|
+12,22,0,685,208,5,11,8,7,0,0,-1,0,0,0
+s
+12,23,0,672,262,5,11,8,7,0,0,-1,0,0,0
+s
+12,24,0,668,387,5,11,8,7,0,0,-1,0,0,0
+s
+12,26,0,523,428,5,11,8,7,0,0,-1,0,0,0
+s
+12,29,0,427,382,6,11,8,7,0,0,-1,0,0,0
+o
+1,35,5,34,1,0,0,0,0,64,0,-1--1--1,,1|(329,166)|
+1,36,1,34,1,0,0,0,0,64,0,-1--1--1,,1|(597,188)|
+1,37,34,4,1,0,0,0,0,64,0,-1--1--1,,1|(402,233)|
+12,38,0,496,205,6,11,8,7,0,0,-1,0,0,0
+o
+12,39,0,392,165,5,11,8,7,0,0,-1,0,0,0
+s
+12,40,0,405,277,6,11,8,7,0,0,-1,0,0,0
+o
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*View 2
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|96,96,100,0
+10,1,Potential Money Earned by Refugees,829,44,80,20,8,131,0,0,0,0,0,0
+10,2,Money Earned by Farmers,348,376,58,19,8,3,0,0,0,0,0,0
+10,3,Food Aid Delivered,974,290,32,19,8,3,0,0,0,0,0,0
+10,4,Stated Food Needed,1009,129,51,25,8,131,0,0,0,0,0,0
+10,6,Food Produced,322,122,50,11,8,3,0,0,0,0,0,0
+1,9,4,3,1,0,0,0,0,64,0,-1--1--1,,1|(1029,183)|
+10,12,Farmers' Food Sold in Market,440,227,55,19,8,131,0,0,0,0,0,0
+1,13,12,2,1,0,0,0,0,64,0,-1--1--1,,1|(413,306)|
+10,25,Farmers' Profit,194,248,48,19,8,3,0,0,0,0,0,0
+1,27,2,25,1,0,0,0,0,64,0,-1--1--1,,1|(242,366)|
+1,42,25,6,1,0,0,0,0,64,0,-1--1--1,,1|(198,179)|
+1,45,1,4,1,0,0,0,0,64,0,-1--1--1,,1|(967,66)|
+10,53,Refugees' Food Sold in Market,563,327,55,19,8,3,0,0,0,0,0,0
+1,56,6,12,1,0,0,0,0,64,0,-1--1--1,,1|(397,156)|
+1,57,53,12,1,0,0,0,0,64,0,-1--1--1,,1|(497,298)|
+12,62,0,455,269,6,11,8,7,0,0,-1,0,0,0
+o
+12,63,0,366,342,5,11,8,7,0,0,-1,0,0,0
+s
+12,64,0,206,277,5,11,8,7,0,0,-1,0,0,0
+s
+12,65,0,263,144,5,11,8,7,0,0,-1,0,0,0
+s
+12,66,0,429,180,5,11,8,7,0,0,-1,0,0,0
+s
+10,67,Food Needed,602,82,45,11,8,3,0,0,0,0,0,0
+1,70,67,12,1,0,0,0,0,64,0,-1--1--1,,1|(536,107)|
+12,75,0,448,182,5,11,8,7,0,0,-1,0,0,0
+s
+10,76,Money Earned by Refugees,754,478,58,19,8,3,0,0,0,0,0,0
+1,77,53,76,1,0,0,0,0,64,0,-1--1--1,,1|(628,436)|
+10,81,Gap Between Food Aid Delivered and Food Needed,775,329,77,28,8,3,0,0,0,0,0,0
+1,82,67,81,1,0,0,0,0,64,0,-1--1--1,,1|(760,196)|
+1,83,3,81,1,0,0,0,0,64,0,-1--1--1,,1|(884,342)|
+1,84,81,53,1,0,0,0,0,64,0,-1--1--1,,1|(688,368)|
+12,85,0,597,375,5,11,8,7,0,0,-1,0,0,0
+s
+12,86,0,674,484,5,11,8,7,0,0,-1,0,0,0
+s
+1,91,67,1,1,0,0,0,0,64,0,-1--1--1,,1|(635,64)|
+12,92,0,735,19,5,11,8,7,0,0,-1,0,0,0
+s
+12,93,0,1006,85,5,11,8,7,0,0,-1,0,0,0
+s
+12,94,0,1026,271,5,11,8,7,0,0,-1,0,0,0
+s
+12,95,0,860,373,5,11,8,7,0,0,-1,0,0,0
+s
+12,96,0,801,287,6,11,8,7,0,0,-1,0,0,0
+o
+///---\\\
+:L<%^E!@
+9:Current
+22:$,Dollar,Dollars,$s
+22:Hour,Hours
+22:Month,Months
+22:Person,People,Persons
+22:Unit,Units
+22:Week,Weeks
+22:Year,Years
+22:Day,Days
+15:0,0,0,0,0,0
+19:100,1
+27:2,
+34:0,
+5:Refugees' Food Sold in Market
+35:Date
+36:YYYY-MM-DD
+37:2000
+38:1
+39:1
+40:2
+41:0
+24:0
+25:0
+26:0
