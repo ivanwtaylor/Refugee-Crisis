@@ -1,0 +1,784 @@
+{UTF-8}
+Average Time to Create a Safe Haven=
+	Normal Time to Create a Safe Haven*Effect of Peacekeepers on Creation of Safe Havens\
+		(Peacekeepers/Normal Peacekeepers to Create a Safe Haven)
+	~	Months
+	~		|
+
+Effect of Peacekeepers on Creation of Safe Havens(
+	[(0,0)-(5,1)],(0,1),(1,0.5),(5,0.1))
+	~	dmnl
+	~	The function considers the peacekeepers compared to the normal \
+		peacekeepers to create a safe haven to determine the multiplier of normal \
+		time to create a safe haven\!Peacekeepers / Normal Peacekeepers to Creats \
+		a Safe Haven\!Multiplier to calculate average time to create a safe haven
+	|
+
+Average Life Expectancy in Crisis Country=
+	50
+	~	Years
+	~		|
+
+Average Life Expectancy in Neighbouring Country=
+	60
+	~	Years
+	~		|
+
+Normal Peacekeepers to Create a Safe Haven=
+	1000
+	~	Soldiers
+	~		|
+
+Deaths in Crisis Country=
+	People in Crisis Country/(Average Life Expectancy in Crisis Country*Months per Year)
+	~	People/Month
+	~		|
+
+Refugee Deaths=
+	Refugees in Neighbouring Countries/(Average Life Expectancy in Neighbouring Country*\
+		Months per Year)
+	~	People/Month
+	~		|
+
+Safe Havens Created=
+	(Desired Number of Safe Havens-Safe Havens)/Average Time to Create a Safe Haven
+	~	Havens/Month
+	~		|
+
+Violence Threshold=
+	10
+	~	Battles
+	~		|
+
+Change in Peacekeepers=
+	(Desired Peacekeepers-Peacekeepers)/Average Time to Deploy Peacekeepers
+	~	Soldiers/Month
+	~		|
+
+Rebel Losses per Month=
+	(1-Ceasefire)*Violence Level*Effectiveness of Regime
+	~	Soldiers/Month
+	~		|
+
+Regime Unit Size=
+	10000
+	~	Soldiers/Military Units
+	~		|
+
+Rebel Unit Size=
+	100
+	~	Soldiers/Military Units
+	~		|
+
+Rebel Units=
+	Rebel Forces/Rebel Unit Size
+	~	Military Units
+	~		|
+
+Average Time to Destroy Safe Haven=
+	Normal Time to Destroy a Safe Haven*Effect of Violence on Time to Destroy a Safe Haven\
+		(Violence Level/Normal Violence Required to Destroy a Safe Haven
+	)
+	~	Months
+	~		|
+
+Births in Crisis Country=
+	People in Crisis Country*(Birth Rate/Months per Year)
+	~	People/Month
+	~		|
+
+Ceasefire=
+	IF THEN ELSE(Violence Level<=Violence Threshold, IF THEN ELSE(Diplomatic Effort>Normal Diplomatic Effort to Create Ceasefire
+	, 1 , 0 ) 
+	, 0 )
+	~	dmnl
+	~		|
+
+Refugees in Neighbouring Countries= INTEG (
+	Net Refugees-Net Deaths,
+		Initial Refugees in Neighbouring Countries)
+	~	People
+	~		|
+
+Net Refugees=
+	Refugee Flow-Repatriation Flow
+	~	People/Month
+	~		|
+
+Regime Losses per Month=
+	(1-Ceasefire)*Violence Level*Effectiveness of Rebels
+	~	Soldiers/Month
+	~		|
+
+Desired Peacekeepers=
+	Ceasefire*Normal Peacekeepers per Cease Fire*Effect of People At Risk on Desired Peacekeepers\
+		(People At Risk/Normal People At Risk
+	)
+	~	Soldiers
+	~		|
+
+Repatriation Flow=
+	Repatriation Rate*Refugees in Neighbouring Countries*Ceasefire
+	~	People/Month
+	~		|
+
+Desired Number of Safe Havens=
+	People in Crisis Country/Average Population in a Safe Haven
+	~	Havens
+	~		|
+
+Violence Level=
+	Normal Violence Contact Rate*Rebel Units*Regime Units*(1-Effect of Peacekeepers at Enforcing Ceasefires\
+		(Peacekeepers/Normal Peacekeepers per Cease Fire))
+	~	Battles
+	~		|
+
+People At Risk=
+	People in Crisis Country-People in Safe Havens
+	~	People
+	~		|
+
+People in Crisis Country= INTEG (
+	Net Births-Net Refugees,
+		Initial People in Crisis Country)
+	~	People
+	~		|
+
+Safe Havens Destroyed=
+	Effect of Peacekeepers on Protection of Safe Havens(Peacekeepers/Normal Peacekeepers to Protect Safe Haven\
+		)*Safe Havens/Average Time to Destroy Safe Haven
+	~	Havens/Month
+	~		|
+
+Refugee Births=
+	Refugees in Neighbouring Countries*Birth Rate/Months per Year
+	~	People/Month
+	~		|
+
+Regime Units=
+	Regime Forces/Regime Unit Size
+	~	Military Units
+	~		|
+
+Net Deaths=
+	Refugee Deaths-Refugee Births
+	~	People/Month
+	~		|
+
+Peacekeepers= INTEG (
+	Change in Peacekeepers,
+		Initial Peacekeepers)
+	~	Soldiers
+	~		|
+
+Refugee Flow=
+	Refugee Flow Rate*People in Crisis Country*(1-Ceasefire)
+	~	People/Month
+	~		|
+
+Net Births=
+	Births in Crisis Country-Deaths in Crisis Country
+	~	People/Month
+	~		|
+
+Aid to Regime=
+	(1-Ceasefire)*(Normal Regime Support from Allies*Effect of Rebel Force on Support from Regime Allies\
+		(Rebel Forces/Normal Rebel Forces
+	))/Cost of Supporting Regime Soldiers
+	~	Soldiers/Month
+	~		|
+
+Normal Diplomatic Effort=
+	100
+	~	Diplomats
+	~		|
+
+Initial Safe Havens=
+	Initial People in Crisis Country/Average Population in a Safe Haven
+	~	Havens
+	~		|
+
+Normal People At Risk=
+	50000
+	~	People
+	~		|
+
+Refugee Flow Rate=
+	0.005
+	~	People/People/Month
+	~		|
+
+Initial People in Crisis Country=
+	2.14e+007
+	~	People
+	~		|
+
+Desired Amount of Diplomatic Effort=
+	Normal Diplomatic Effort*Effect of People At Risk on Desired Diplomatic Effort(People At Risk\
+		/Normal People At Risk)
+	~	Diplomats
+	~		|
+
+Effect of People At Risk on Desired Peacekeepers(
+	[(0,0)-(5,2)],(0,0),(1,1),(5,2))
+	~	dmnl
+	~	This function considers the people at risk compared to the normal people \
+		at risk and determines the mulitplier for normal peackeepers per cease \
+		fire to obtain the desired peacekeepers\!People At Risk / Normal People At \
+		Risk\!Multipler to calculate the Desired Peace-keepers
+	|
+
+Months per Year=
+	12
+	~	Months/Year
+	~		|
+
+Effect of People At Risk on Desired Diplomatic Effort(
+	[(0,0)-(5,5)],(0,0),(1,2),(5,5))
+	~	dmnl
+	~	This function considers the people at risk compared to the normal people \
+		at risk to determine the multiplier for the normal diplomatic effect and \
+		thereby calculate the desired diplomatic effort\!People At Risk / Normal \
+		People At Risk\!Multipler to calculate the Desired Diplomatic Effort
+	|
+
+Effect of Rebel Force on Support from Regime Allies(
+	[(0,0)-(1,1)],(0,0),(1,1))
+	~	dmnl
+	~	This function compares the size of the rebel forces to the normal size of \
+		the rebel forces to determine the multiplier of the normal regime support \
+		from allies\!Rebel Forces / Normal Rebel Forces\!Multiplier fo the normal \
+		regime support from allies
+	|
+
+Initial Refugees in Neighbouring Countries=
+	0
+	~	People
+	~		|
+
+Birth Rate=
+	0.02
+	~	People/People/Year
+	~		|
+
+Repatriation Rate=
+	0.02
+	~	People/People/Month
+	~		|
+
+Aid to Rebels=
+	Rebel Support from Allies/Cost of Supporting Rebel Soldiers
+	~	Soldiers/Month
+	~		|
+
+Average Population in a Safe Haven=
+	50000
+	~	People/Havens
+	~		|
+
+Initial Regime Force=
+	1e+006
+	~	Soldiers
+	~		|
+
+Cost of Supporting Rebel Soldiers=
+	0.001
+	~	Million Dollars/Soldiers
+	~		|
+
+Cost of Supporting Regime Soldiers=
+	0.05
+	~	Million Dollars/Soldiers
+	~		|
+
+Normal Peacekeepers per Cease Fire=
+	20000
+	~	Soldiers
+	~		|
+
+Regime Forces= INTEG (
+	Aid to Regime-Regime Losses per Month,
+		Initial Regime Force)
+	~	Soldiers
+	~		|
+
+Effectiveness of Rebels=
+	10
+	~	Soldiers/Battles/Month
+	~		|
+
+Rebel Forces= INTEG (
+	Aid to Rebels-Rebel Losses per Month,
+		Initial Rebel Force)
+	~	Soldiers
+	~		|
+
+Rebel Support from Allies=
+	Normal Support to Rebels from Allies*Effectiveness of Diplomatic Effort at Reducing Support to Rebels\
+		(Diplomatic Effort/Normal Diplomatic Effort to Reduce Support to Rebels
+	)
+	~	Million Dollars/Month
+	~		|
+
+Effectiveness of Diplomatic Effort at Reducing Support to Rebels(
+	[(0,0)-(5,1)],(0,1),(1,0.2),(5,0))
+	~	dmnl
+	~	This function compares the diplomatic effort to the normal diplomatic \
+		effort to reduce support to rebels to determine the multiplier to \
+		calculate support to rebels from allies\!Diplomatic Effort / Normal \
+		Diplomatic Effort to Reduce Support to Rebels\!Multiplier to calculate the \
+		support to rebels from allies
+	|
+
+Effect of Peacekeepers at Enforcing Ceasefires(
+	[(0,0)-(1,1)],(0,0),(1,1))
+	~	dmnl
+	~	This function compares the peacekeepers to the normal peacekeepers per \
+		cease fire to determine the multiplier of the cease fire \
+		enforcement\!Peacekeepers / Normal Peacekeepers per Cease Fire\!Multiplier \
+		to calculate cease fire enforcement
+	|
+
+Effectiveness of Regime=
+	10
+	~	Soldiers/Battles/Month
+	~		|
+
+Normal Violence Contact Rate=
+	0.005
+	~	Battles/(Military Units*Military Units)
+	~		|
+
+Initial Rebel Force=
+	10000
+	~	Soldiers
+	~		|
+
+Normal Rebel Forces=
+	10000
+	~	Soldiers
+	~		|
+
+Normal Regime Support from Allies=
+	100
+	~	Million Dollars/Month
+	~		|
+
+Normal Support to Rebels from Allies=
+	20
+	~	Million Dollars/Month
+	~		|
+
+Normal Diplomatic Effort to Create Ceasefire=
+	100
+	~	Diplomats
+	~		|
+
+People in Safe Havens=
+	Safe Havens*Average Population in a Safe Haven
+	~	People
+	~		|
+
+Normal Diplomatic Effort to Reduce Support to Rebels=
+	100
+	~	Diplomats
+	~		|
+
+Diplomatic Effort= INTEG (
+	Change in Diplomatic Effort,
+		Initial Diplomatic Effort)
+	~	Diplomats
+	~		|
+
+Average Time to Deploy Diplomats=
+	6
+	~	Months
+	~		|
+
+Average Time to Deploy Peacekeepers=
+	12
+	~	Months
+	~		|
+
+Change in Diplomatic Effort=
+	(Desired Amount of Diplomatic Effort-Diplomatic Effort)/Average Time to Deploy Diplomats
+	~	Diplomats/Month
+	~		|
+
+Effect of Peacekeepers on Protection of Safe Havens(
+	[(0,0)-(1,1)],(0,1),(1,0))
+	~	dmnl
+	~	This function compares the peacekeepers to the normal peacekeepers to \
+		protect a safe haven to multiply by the number of safe havens destroyed \
+		per month\!Peacekeepers / Normal Peacekeepers to Protect a Safe \
+		Haven\!Multiplier of Destroyed Safe Havens per Month
+	|
+
+Normal Violence Required to Destroy a Safe Haven=
+	100
+	~	Battles
+	~		|
+
+Normal Peacekeepers to Protect Safe Haven=
+	1000
+	~	Soldiers
+	~		|
+
+Normal Time to Create a Safe Haven=
+	12
+	~	Months
+	~		|
+
+Initial Peacekeepers=
+	0
+	~	Soldiers
+	~		|
+
+Initial Diplomatic Effort=
+	0
+	~	Diplomats
+	~		|
+
+Effect of Violence on Time to Destroy a Safe Haven(
+	[(0,0)-(2,10)],(0,10),(1,1),(2,0.1))
+	~	dmnl
+	~	This function compares the violence level to the normal violence level to \
+		destroy a safe haven and determines the multiplier of the normal time to \
+		destroy a safe haven\!Violence Level / Normal Violence Level to Destroy a \
+		Safe Haven\!Multiplier to calculate the average time to destroy a safe \
+		haven
+	|
+
+Normal Time to Destroy a Safe Haven=
+	6
+	~	Months
+	~		|
+
+Safe Havens= INTEG (
+	Safe Havens Created-Safe Havens Destroyed,
+		Initial Safe Havens)
+	~	Havens
+	~		|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 96
+	~	Month
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 0
+	~	Month
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 
+        TIME STEP
+	~	Month [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 0.125
+	~	Month [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Safe Havens
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|96,96,75,0
+10,1,Safe Havens,724,266,65,48,3,131,0,0,0,0,0,0
+12,2,48,471,271,10,8,0,3,0,0,-1,0,0,0
+1,3,5,1,4,0,0,22,0,0,0,-1--1--1,,1|(617,271)|
+1,4,5,2,100,0,0,22,0,0,0,-1--1--1,,1|(522,271)|
+11,5,48,570,271,6,8,34,3,0,0,1,0,0,0
+10,6,Safe Havens Created,570,298,41,19,40,3,0,0,-1,0,0,0
+12,7,48,981,263,10,8,0,3,0,0,-1,0,0,0
+1,8,10,7,4,0,0,22,0,0,0,-1--1--1,,1|(928,263)|
+1,9,10,1,100,0,0,22,0,0,0,-1--1--1,,1|(831,263)|
+11,10,48,880,263,6,8,34,3,0,0,1,0,0,0
+10,11,Safe Havens Destroyed,880,290,41,19,40,3,0,0,-1,0,0,0
+10,12,Average Time to Destroy Safe Haven,1046,380,65,19,8,3,0,0,0,0,0,0
+10,13,Normal Time to Destroy a Safe Haven,1239,509,70,19,8,3,0,0,0,0,0,0
+10,14,Effect of Violence on Time to Destroy a Safe Haven,1332,263,85,19,8,3,0,0,0,0,0,0
+1,15,12,11,1,0,0,0,0,64,0,-1--1--1,,1|(929,366)|
+1,16,13,12,1,0,0,0,0,64,0,-1--1--1,,1|(1114,496)|
+1,17,14,12,1,0,0,0,0,64,0,-1--1--1,,1|(1270,340)|
+1,18,1,11,1,0,0,0,0,64,0,-1--1--1,,1|(788,343)|
+10,19,Initial Safe Havens,597,370,58,11,8,3,0,0,0,0,0,0
+1,20,19,1,1,0,0,0,0,64,1,-1--1--1,,1|(591,313)|
+1,21,1,6,1,0,0,0,0,64,0,-1--1--1,,1|(647,343)|
+10,22,Normal Peacekeepers to Protect Safe Haven,856,122,80,19,8,131,0,0,0,0,0,0
+10,23,Normal Time to Create a Safe Haven,143,271,67,19,8,3,0,0,0,0,0,0
+10,24,Effect of Peacekeepers on Protection of Safe Havens,1099,86,87,19,8,3,0,0,0,0,0,0
+10,25,Normal Violence Required to Destroy a Safe Haven,1208,177,70,30,8,131,0,0,0,0,0,0
+1,26,25,12,1,0,0,0,0,64,0,-1--1--1,,1|(1189,264)|
+10,27,Average Population in a Safe Haven,277,521,70,19,8,3,0,0,0,0,0,0
+10,28,Desired Number of Safe Havens,329,391,55,28,8,131,0,0,0,0,0,0
+1,29,28,6,1,0,0,0,0,64,0,-1--1--1,,1|(402,370)|
+1,30,27,28,1,0,0,0,0,64,0,-1--1--1,,1|(328,493)|
+10,31,People At Risk,454,629,57,19,8,3,0,0,0,0,0,0
+10,32,People in Safe Havens,653,495,46,19,8,3,0,0,0,0,0,0
+1,33,27,32,1,0,0,0,0,64,0,-1--1--1,,1|(395,547)|
+1,34,1,32,1,0,0,0,0,64,0,-1--1--1,,1|(716,387)|
+1,35,32,31,1,0,0,0,0,64,0,-1--1--1,,1|(609,610)|
+10,36,Initial People in Crisis Country,456,432,54,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,37,36,19,1,0,0,0,0,64,0,-1--1--1,,1|(470,402)|
+1,38,27,19,1,0,0,0,0,64,0,-1--1--1,,1|(391,519)|
+10,39,Peacekeepers,955,42,54,11,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,40,22,10,1,0,0,0,0,64,0,-1--1--1,,1|(820,169)|
+1,41,39,10,1,0,0,0,0,64,0,-1--1--1,,1|(970,113)|
+1,42,24,11,1,0,0,0,0,64,0,-1--1--1,,1|(1005,274)|
+10,43,People in Crisis Country,77,517,55,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,44,43,28,1,0,0,0,0,64,0,-1--1--1,,1|(83,500)|
+1,45,43,31,1,0,0,0,0,64,0,-1--1--1,,1|(174,609)|
+10,46,Violence Level,892,517,56,11,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,47,46,12,1,0,0,0,0,64,0,-1--1--1,,1|(966,484)|
+10,48,Normal Peacekeepers to Create a Safe Haven,124,104,80,19,8,3,0,0,0,0,0,0
+10,49,Effect of Peacekeepers on Creation of Safe Havens,459,126,84,19,8,3,0,0,0,0,0,0
+10,50,Peacekeepers,308,60,54,11,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,51,Average Time to Create a Safe Haven,334,192,67,19,8,3,0,0,0,0,0,0
+1,52,23,51,1,0,0,0,0,64,0,-1--1--1,,1|(249,279)|
+1,53,48,51,1,0,0,0,0,64,0,-1--1--1,,1|(163,150)|
+1,54,50,51,1,0,0,0,0,64,0,-1--1--1,,1|(298,102)|
+1,55,49,51,1,0,0,0,0,64,0,-1--1--1,,1|(453,158)|
+1,56,51,6,1,0,0,0,0,64,0,-1--1--1,,1|(373,258)|
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Peacekeepers
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|96,96,100,0
+10,1,Initial Peacekeepers,635,78,45,19,8,3,0,0,0,0,0,0
+10,2,Average Time to Deploy Peacekeepers,345,94,81,23,8,131,0,0,0,0,0,0
+10,3,Desired Peacekeepers,324,428,45,19,8,3,0,0,0,0,0,0
+10,4,Ceasefire,517,457,40,11,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,5,People At Risk,203,493,62,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,6,Effect of People At Risk on Desired Peacekeepers,157,351,82,19,8,3,0,0,0,0,0,0
+1,7,5,3,1,0,0,0,0,64,0,-1--1--1,,1|(257,477)|
+1,8,4,3,1,0,0,0,0,64,0,-1--1--1,,1|(443,478)|
+1,9,6,3,1,0,0,0,0,64,0,-1--1--1,,1|(234,415)|
+10,10,Normal People At Risk,317,543,54,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,11,10,3,1,0,0,0,0,64,0,-1--1--1,,1|(314,508)|
+10,12,Peacekeepers,610,239,59,32,3,131,0,0,0,0,0,0
+12,13,48,360,237,10,8,0,3,0,0,-1,0,0,0
+1,14,16,12,4,0,0,22,0,0,0,-1--1--1,,1|(509,237)|
+1,15,16,13,100,0,0,22,0,0,0,-1--1--1,,1|(413,237)|
+11,16,48,462,237,6,8,34,3,0,0,1,0,0,0
+10,17,Change in Peacekeepers,462,264,45,19,40,3,0,0,-1,0,0,0
+1,18,1,12,1,0,0,0,0,64,1,-1--1--1,,1|(645,127)|
+1,19,2,17,1,0,0,0,0,64,0,-1--1--1,,1|(362,142)|
+1,20,3,17,1,0,0,0,0,64,0,-1--1--1,,1|(453,359)|
+1,21,12,17,1,0,0,0,0,64,0,-1--1--1,,1|(558,303)|
+10,22,Normal Peacekeepers per Cease Fire,243,299,58,28,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,23,22,3,1,0,0,0,0,64,0,-1--1--1,,1|(305,342)|
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Violence Level
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|96,96,100,0
+10,1,Diplomatic Effort,471,539,57,21,8,130,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,2,Regime Forces,448,162,40,20,3,3,0,0,0,0,0,0
+10,3,Rebel Forces,456,259,40,20,3,3,0,0,0,0,0,0
+12,4,48,684,152,10,8,0,3,0,0,-1,0,0,0
+1,5,7,4,4,0,0,22,0,0,0,-1--1--1,,1|(633,152)|
+1,6,7,2,100,0,0,22,0,0,0,-1--1--1,,1|(534,152)|
+11,7,48,586,152,6,8,34,3,0,0,1,0,0,0
+10,8,Regime Losses per Month,586,179,61,19,40,3,0,0,-1,0,0,0
+12,9,48,689,256,10,8,0,3,0,0,-1,0,0,0
+1,10,12,9,4,0,0,22,0,0,0,-1--1--1,,1|(636,256)|
+1,11,12,3,100,0,0,22,0,0,0,-1--1--1,,1|(538,256)|
+11,12,48,587,256,6,8,34,3,0,0,1,0,0,0
+10,13,Rebel Losses per Month,587,283,56,19,40,3,0,0,-1,0,0,0
+12,14,48,275,159,10,8,0,3,0,0,-1,0,0,0
+1,15,17,2,4,0,0,22,0,0,0,-1--1--1,,1|(382,159)|
+1,16,17,14,100,0,0,22,0,0,0,-1--1--1,,1|(315,159)|
+11,17,48,351,159,6,8,34,3,0,0,1,0,0,0
+10,18,Aid to Regime,351,178,46,11,40,3,0,0,-1,0,0,0
+12,19,48,269,258,10,8,0,3,0,0,-1,0,0,0
+1,20,22,3,4,0,0,22,0,0,0,-1--1--1,,1|(377,257)|
+1,21,22,19,100,0,0,22,0,0,0,-1--1--1,,1|(302,257)|
+11,22,48,332,257,6,8,34,3,0,0,1,0,0,0
+10,23,Aid to Rebels,332,276,44,11,40,3,0,0,-1,0,0,0
+10,24,Effectiveness of Rebels,773,166,50,19,8,3,0,0,0,0,0,0
+10,25,Effectiveness of Regime,735,348,50,19,8,3,0,0,0,0,0,0
+1,26,25,13,1,0,0,0,0,64,0,-1--1--1,,1|(620,317)|
+10,27,Normal Regime Support from Allies,179,110,56,26,8,131,0,0,0,0,0,0
+10,28,Rebel Support from Allies,288,442,47,19,8,3,0,0,0,0,0,0
+1,29,28,23,1,0,0,0,0,64,0,-1--1--1,,1|(322,381)|
+1,30,27,18,1,0,0,0,0,64,0,-1--1--1,,1|(231,152)|
+1,31,3,18,1,0,0,0,0,64,0,-1--1--1,,1|(392,234)|
+1,32,1,28,1,0,0,0,0,64,0,-1--1--1,,1|(411,525)|
+1,33,24,8,1,0,0,0,0,64,0,-1--1--1,,1|(687,186)|
+10,34,Ceasefire,864,441,34,11,8,3,0,0,0,0,0,0
+1,35,1,34,1,0,0,0,0,64,0,-1--1--1,,1|(601,548)|
+1,36,34,13,1,0,0,0,0,64,0,-1--1--1,,1|(672,433)|
+1,37,34,8,1,0,0,0,0,64,0,-1--1--1,,1|(777,276)|
+10,38,Effect of Peacekeepers at Enforcing Ceasefires,1211,278,70,39,8,131,0,0,0,0,0,0
+10,39,Normal Peacekeepers per Cease Fire,1193,173,71,19,8,3,0,0,0,0,0,0
+10,40,Normal Violence Contact Rate,1052,355,65,21,8,131,0,0,0,0,0,0
+10,41,Cost of Supporting Regime Soldiers,286,59,61,19,8,3,0,0,0,0,0,0
+10,42,Cost of Supporting Rebel Soldiers,408,429,61,19,8,3,0,0,0,0,0,0
+1,43,41,18,1,0,0,0,0,64,0,-1--1--1,,1|(275,102)|
+1,44,42,23,1,0,0,0,0,64,0,-1--1--1,,1|(410,389)|
+10,45,Initial Regime Force,458,57,43,19,8,3,0,0,0,0,0,0
+10,46,Initial Rebel Force,477,336,58,11,8,3,0,0,0,0,0,0
+1,47,45,2,1,0,0,0,0,64,1,-1--1--1,,1|(450,92)|
+1,48,46,3,1,0,0,0,0,64,1,-1--1--1,,1|(463,318)|
+10,49,Normal Rebel Forces,63,243,45,19,8,3,0,0,0,0,0,0
+10,50,Effect of Rebel Force on Support from Regime Allies,101,166,88,19,8,3,0,0,0,0,0,0
+1,51,50,18,1,0,0,0,0,64,0,-1--1--1,,1|(177,196)|
+1,52,49,18,1,0,0,0,0,64,0,-1--1--1,,1|(251,236)|
+10,53,Normal Diplomatic Effort to Create Ceasefire,891,559,82,19,8,3,0,0,0,0,0,0
+1,54,53,34,1,0,0,0,0,64,0,-1--1--1,,1|(876,526)|
+10,55,Normal Diplomatic Effort to Reduce Support to Rebels,328,560,81,28,8,3,0,0,0,0,0,0
+10,56,Effectiveness of Diplomatic Effort at Reducing Support to Rebels,83,410,94,28,8,3,0,0,0,0,0,0
+1,57,55,28,1,0,0,0,0,64,0,-1--1--1,,1|(303,522)|
+1,58,56,28,1,0,0,0,0,64,0,-1--1--1,,1|(185,406)|
+10,59,Normal Support to Rebels from Allies,90,502,61,19,8,3,0,0,0,0,0,0
+1,60,59,28,1,0,0,0,0,64,0,-1--1--1,,1|(183,507)|
+10,61,Ceasefire,399,82,40,11,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,62,61,17,1,0,0,0,0,64,0,-1--1--1,,1|(360,110)|
+10,63,Regime Unit Size,725,8,54,11,8,3,0,0,0,0,0,0
+10,64,Rebel Unit Size,589,458,49,11,8,3,0,0,0,0,0,0
+10,65,Regime Units,919,66,42,11,8,3,0,0,0,0,0,0
+10,66,Rebel Units,743,384,37,11,8,3,0,0,0,0,0,0
+1,67,2,65,1,0,0,0,0,64,0,-1--1--1,,1|(545,107)|
+1,68,63,65,1,0,0,0,0,64,0,-1--1--1,,1|(829,21)|
+1,69,3,66,1,0,0,0,0,64,0,-1--1--1,,1|(555,348)|
+1,70,64,66,1,0,0,0,0,64,0,-1--1--1,,1|(636,449)|
+10,71,Peacekeepers,1107,60,54,11,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,72,Violence Threshold,1056,462,32,19,8,3,0,0,0,0,0,0
+1,73,72,34,1,0,0,0,0,64,0,-1--1--1,,1|(997,469)|
+10,74,Violence Level,973,216,47,11,8,3,0,0,0,0,0,0
+1,75,74,34,1,0,0,0,0,64,0,-1--1--1,,1|(963,294)|
+1,76,74,13,1,0,0,0,0,64,0,-1--1--1,,1|(795,284)|
+1,77,74,7,1,0,0,0,0,64,0,-1--1--1,,1|(883,155)|
+1,78,66,74,1,0,0,0,0,64,0,-1--1--1,,1|(816,372)|
+1,79,65,74,1,0,0,0,0,64,0,-1--1--1,,1|(962,126)|
+1,80,71,74,1,0,0,0,0,64,0,-1--1--1,,1|(1097,109)|
+1,81,39,74,1,0,0,0,0,64,0,-1--1--1,,1|(1137,201)|
+1,82,38,74,1,0,0,0,0,64,0,-1--1--1,,1|(1098,276)|
+1,83,40,74,1,0,0,0,0,64,0,-1--1--1,,1|(1013,306)|
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Diplomatic Effort
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|96,96,100,0
+10,1,Diplomatic Effort,595,261,58,31,3,131,0,0,0,0,0,0
+12,2,48,337,259,10,8,0,3,0,0,-1,0,0,0
+1,3,5,1,4,0,0,22,0,0,0,-1--1--1,,1|(492,259)|
+1,4,5,2,100,0,0,22,0,0,0,-1--1--1,,1|(391,259)|
+11,5,48,442,259,6,8,34,3,0,0,1,0,0,0
+10,6,Change in Diplomatic Effort,442,287,67,20,40,131,0,0,-1,0,0,0
+10,7,Desired Amount of Diplomatic Effort,311,387,62,19,8,3,0,0,0,0,0,0
+10,8,Initial Diplomatic Effort,586,146,57,23,8,131,0,0,0,0,0,0
+1,9,8,1,1,0,0,0,0,64,1,-1--1--1,,1|(578,162)|
+1,10,1,6,1,0,0,0,0,64,0,-1--1--1,,1|(558,323)|
+1,11,7,6,1,0,0,0,0,64,0,-1--1--1,,1|(404,384)|
+10,12,Average Time to Deploy Diplomats,246,133,59,19,8,3,0,0,0,0,0,0
+1,13,12,6,1,0,0,0,0,64,0,-1--1--1,,1|(231,223)|
+10,14,People At Risk,278,525,62,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,15,Effect of People At Risk on Desired Diplomatic Effort,98,471,78,28,8,3,0,0,0,0,0,0
+10,16,Normal Diplomatic Effort,116,329,55,19,8,3,0,0,0,0,0,0
+1,17,16,7,1,0,0,0,0,64,0,-1--1--1,,1|(153,375)|
+1,18,14,7,1,0,0,0,0,64,0,-1--1--1,,1|(295,497)|
+1,19,15,7,1,0,0,0,0,64,0,-1--1--1,,1|(230,465)|
+10,20,Normal People At Risk,486,513,49,19,8,3,0,0,0,0,0,0
+1,21,20,7,1,0,0,0,0,64,0,-1--1--1,,1|(414,502)|
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Refugees
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|96,96,75,0
+10,1,Refugees in Neighbouring Countries,1106,256,144,37,3,131,0,0,0,0,0,0
+10,2,Birth Rate,134,136,58,11,8,3,0,0,0,0,0,0
+10,3,Months per Year,67,282,54,11,8,3,0,0,0,0,0,0
+10,4,Refugee Flow,684,418,44,11,8,3,0,0,0,0,0,0
+10,5,Repatriation Flow,952,407,65,15,8,131,0,0,0,0,0,0
+10,6,Initial People in Crisis Country,480,120,49,19,8,3,0,0,0,0,0,0
+10,7,Initial Refugees in Neighbouring Countries,1065,130,75,19,8,3,0,0,0,0,0,0
+12,8,48,1412,250,10,8,0,3,0,0,-1,0,0,0
+1,9,11,8,4,0,0,22,0,0,0,-1--1--1,,1|(1367,250)|
+1,10,11,1,100,0,0,22,0,0,0,-1--1--1,,1|(1285,250)|
+11,11,48,1326,250,6,8,34,3,0,0,1,0,0,0
+10,12,Net Deaths,1326,269,37,11,40,3,0,0,-1,0,0,0
+10,13,Birth Rate,1589,127,47,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,14,Months per Year,1596,253,42,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,15,Refugee Flow Rate,446,440,53,19,8,3,0,0,0,0,0,0
+10,16,Repatriation Rate,1157,411,56,19,8,3,0,0,0,0,0,0
+1,17,15,4,1,0,0,0,0,64,0,-1--1--1,,1|(509,452)|
+1,18,16,5,1,0,0,0,0,64,0,-1--1--1,,1|(1105,367)|
+1,19,1,5,1,0,0,0,0,64,0,-1--1--1,,1|(1006,292)|
+10,20,Births in Crisis Country,308,162,52,21,8,131,0,0,0,0,0,0
+10,21,Deaths in Crisis Country,233,365,49,19,8,3,0,0,0,0,0,0
+1,22,2,20,1,0,0,0,0,64,0,-1--1--1,,1|(198,110)|
+1,23,3,21,1,0,0,0,0,64,0,-1--1--1,,1|(115,386)|
+1,24,3,20,1,0,0,0,0,64,0,-1--1--1,,1|(74,254)|
+10,25,Refugee Births,1382,140,46,11,8,3,0,0,0,0,0,0
+10,26,Refugee Deaths,1344,386,50,11,8,3,0,0,0,0,0,0
+1,27,1,25,1,0,0,0,0,64,0,-1--1--1,,1|(1190,179)|
+1,28,13,25,1,0,0,0,0,64,0,-1--1--1,,1|(1518,120)|
+1,29,14,25,1,0,0,0,0,64,0,-1--1--1,,1|(1561,219)|
+1,30,1,26,1,0,0,0,0,64,0,-1--1--1,,1|(1166,307)|
+1,31,14,26,1,0,0,0,0,64,0,-1--1--1,,1|(1516,304)|
+1,32,26,12,1,0,0,0,0,64,0,-1--1--1,,1|(1324,342)|
+1,33,25,11,1,0,0,0,0,64,0,-1--1--1,,1|(1341,182)|
+10,34,People in Crisis Country,523,257,152,36,3,131,0,0,0,0,0,0
+12,35,48,169,258,10,8,0,3,0,0,-1,0,0,0
+1,36,38,34,4,0,0,22,0,0,0,-1--1--1,,1|(315,258)|
+1,37,38,35,100,0,0,22,0,0,0,-1--1--1,,1|(213,258)|
+11,38,48,253,258,6,8,34,3,0,0,1,0,0,0
+10,39,Net Births,253,277,33,11,40,3,0,0,-1,0,0,0
+1,40,42,1,4,0,0,22,0,0,0,-1--1--1,,1|(882,259)|
+1,41,42,34,100,0,0,22,0,0,0,-1--1--1,,1|(733,259)|
+11,42,1132,797,259,6,8,34,3,0,0,1,0,0,0
+10,43,Net Refugees,797,278,43,11,40,3,0,0,-1,0,0,0
+1,44,34,20,1,0,0,0,0,64,0,-1--1--1,,1|(470,202)|
+1,45,34,21,1,0,0,0,0,64,0,-1--1--1,,1|(456,312)|
+1,46,21,39,1,0,0,0,0,64,0,-1--1--1,,1|(270,334)|
+1,47,20,39,1,0,0,0,0,64,0,-1--1--1,,1|(314,191)|
+1,48,34,4,1,0,0,0,0,64,0,-1--1--1,,1|(584,377)|
+1,49,4,43,1,0,0,0,0,64,0,-1--1--1,,1|(687,381)|
+1,50,5,43,1,0,0,0,0,64,0,-1--1--1,,1|(938,368)|
+1,51,6,34,1,0,0,0,0,64,1,-1--1--1,,1|(516,159)|
+1,52,7,1,0,0,0,0,0,64,1,-1--1--1,,1|(1079,177)|
+10,53,Ceasefire,812,546,40,11,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,54,53,4,1,0,0,0,0,64,0,-1--1--1,,1|(744,531)|
+1,55,53,5,1,0,0,0,0,64,0,-1--1--1,,1|(888,527)|
+10,56,Average Life Expectancy in Crisis Country,181,507,95,20,8,131,0,0,0,0,0,0
+10,57,Average Life Expectancy in Neighbouring Country,1484,514,97,23,8,131,0,0,0,0,0,0
+1,58,56,21,1,0,0,0,0,64,0,-1--1--1,,1|(213,472)|
+1,59,57,26,1,0,0,0,0,64,0,-1--1--1,,1|(1375,466)|
+///---\\\
+:GRAPH People
+:TITLE People in Crisis Country
+:SCALE
+:VAR People in Crisis Country
+:VAR People in Safe Havens
+:L<%^E!@
+9:Baseline
+22:$,Dollar,Dollars,$s
+22:Hour,Hours
+22:Month,Months
+22:Person,People,Persons
+22:Unit,Units
+22:Week,Weeks
+22:Year,Years
+22:Day,Days
+23:0
+15:0,0,0,0,0,0
+19:75,4
+27:2,
+34:0,
+4:Time
+5:Refugees in Neighbouring Countries
+35:Date
+36:YYYY-MM-DD
+37:2000
+38:1
+39:1
+40:2
+41:0
+24:0
+25:96
+26:96
