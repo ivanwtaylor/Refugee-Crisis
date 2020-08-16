@@ -1,0 +1,627 @@
+{UTF-8}
+Net Departures=
+	Average Population in Rebel Enclave*Battles/Average Time to Leave Because of Battles\
+		+Average Population in Rebel Enclave
+	*Protests/Average Time to Leave Because of Protests-Repatriation Mutliplier*Repatrition Rate\
+		*Refugees
+	~	People/Year
+	~		|
+
+Battles= INTEG (
+	Regime Response-Standdowns,
+		Initial Battles)
+	~	Battles
+	~		|
+
+Cease Fires= INTEG (
+	Standdowns,
+		Initial Cease Fires)
+	~	Battles
+	~		|
+
+Standdowns=
+	Battles*Cease Fire Rate
+	~	Battles/Year
+	~		|
+
+Net Deployment=
+	IF THEN ELSE( Battles<=Peacekeeper Deployment Threshold , Deployment Rate*Peacekeepers\
+		-Deployment Rate*Peacekeepers*Peacekeepers
+	/Available Peacekeepers,0)
+	~	Soldiers/Year
+	~		|
+
+Required Peacekeepers per Cease Fire=
+	150
+	~	Soldiers/Battles
+	~		|
+
+Repatriation Mutliplier=
+	Effect of Peacekeeping((Peacekeepers/Cease Fires)/Required Peacekeepers per Cease Fire\
+		)
+	~	dmnl
+	~		|
+
+Initial Cease Fires=
+	0.0001
+	~	Battles
+	~		|
+
+Effect of Peacekeeping(
+	[(0,0)-(2,2)],(0,0),(1,1),(2,1.5))
+	~	dmnl
+	~	This function calculates the multiplier of the repatriation rate based on \
+		the number of peacekeepers per cease fire\!Peacekeepers per Cease Fire / \
+		Required Peacekeepers per Cease Fire\!Confidence in Peace
+	|
+
+Immigrant Acceptance Rate=
+	Normal Immigration Rate*Compassion Fatigue Effect(Immigrants/Compassion Fatigue Threshold\
+		)
+	~	People/People/Year
+	~		|
+
+Repatrition Rate=
+	0.5
+	~	People/People/Year
+	~		|
+
+Actual Battles=
+	Violence Time Series(Time/Normal Time)
+	~	Battles
+	~		|
+
+Actual Deaths in Conflict=
+	Deaths in Conflict Time Series(Time/Normal Time)
+	~	People
+	~		|
+
+Actual Population=
+	Population Time Series(Time/Normal Time)
+	~	People
+	~		|
+
+Actual Refugees=
+	Refugee Time Series(Time/Normal Time)
+	~	People
+	~		|
+
+Average Time to Leave Because of Protests=
+	35.8
+	~	Protests*Years
+	~		|
+
+Initial Deaths from Protests=
+	0
+	~	People
+	~		|
+
+Compassion Fatigue Effect(
+	[(0,0)-(4,2)],(0,1),(1,1),(2,0.02))
+	~	dmnl
+	~	This function calculates the Compassion Fatigue Multiplier for the Normal \
+		Immigration Rate to get the Immigrant Acceptance Rate\!Immigrants / \
+		Compassion Fatigue Threshold\!Compassion Fatigue Multiplier
+	|
+
+Normal Time=
+	1
+	~	Years
+	~		|
+
+Total Deaths from Conflict=
+	Deaths From Protests+Deaths From Battles
+	~	People
+	~		|
+
+Syrian Population= INTEG (
+	Net Births-Combatant Deaths-Protester Deaths-Net Departures,
+		Initial Population)
+	~	People
+	~		|
+
+Deaths From Protests= INTEG (
+	Protester Deaths,
+		Initial Deaths from Protests)
+	~	People
+	~		|
+
+Death Rate From Protests=
+	0.00161
+	~	People/(People*Protests)/Year
+	~		|
+
+Protester Deaths=
+	Death Rate From Protests*Protests*Average Population in Rebel Enclave
+	~	People/Year
+	~		|
+
+Compassion Fatigue Threshold=
+	2e+006
+	~	People
+	~		|
+
+Combatant Deaths=
+	Average Population in Rebel Enclave*Death Rate From Battles*Battles
+	~	People/Year
+	~		|
+
+Average Time to Leave Because of Battles=
+	3.28
+	~	Battles*Years
+	~		|
+
+Normal Immigration Rate=
+	0.0713
+	~	People/People/Year
+	~		|
+
+Peacekeepers= INTEG (
+	Net Deployment,
+		Initial Peacekeepers)
+	~	Soldiers
+	~		|
+
+Deaths From Battles= INTEG (
+	Combatant Deaths,
+		Initial Deaths from Battles)
+	~	People
+	~		|
+
+Deaths in Conflict Time Series(
+	[(2010,0)-(2020,400000)],(2010,0),(2011,7800),(2012,57100),(2013,130600),(2014,206600\
+		),(2015,261800),(2016,311600),(2017,345000),(2018,364800))
+	~	People
+	~		|
+
+Deployment Rate=
+	4
+	~	Soldiers/Soldiers/Year
+	~		|
+
+Available Peacekeepers=
+	30000
+	~	Soldiers
+	~		|
+
+Peacekeeper Deployment Threshold=
+	5
+	~	Battles
+	~		|
+
+Initial Deaths from Battles=
+	0
+	~	People
+	~		|
+
+Initial Peacekeepers=
+	1e-005
+	~	Soldiers
+	~		|
+
+Population Time Series(
+	[(2010,0)-(2019,3e+007)],(2010,2.14e+007),(2015,1.8e+007),(2016,1.75e+007),(2017.49,\
+		1.71e+007),(2018,1.69e+007),(2019,1.7e+007))
+	~	People
+	~		|
+
+Net Refugee Births=
+	Net Birth Rate*Refugees
+	~	People/Year
+	~		|
+
+Refugees= INTEG (
+	Net Departures+Net Refugee Births-Successful Immigrants,
+		Initial Refugees)
+	~	People
+	~		|
+
+Violence Time Series(
+	[(2010,0)-(2020,200)],(2010,0),(2011,1),(2011.5,10),(2012,12),(2012.5,24),(2013,69),\
+		(2013.5,69),(2014,70),(2014.5,59),(2015,59),(2015.5,59),(2016,50),(2016.5,42),(2017\
+		,37),(2017.5,35),(2018,32),(2018.5,23),(2019,18))
+	~	Battles
+	~		|
+
+Immigrants= INTEG (
+	Successful Immigrants,
+		Initial Immigrants)
+	~	People
+	~		|
+
+Refugee Time Series(
+	[(2010,0)-(2019,8e+006)],(2010,18400),(2011,19900),(2012,729000),(2013,2.47e+006),(2014\
+		,3.89e+006),(2015,4.87e+006),(2016,5.52e+006),(2017,6.31e+006),(2018,6.65e+006))
+	~	People
+	~		|
+
+Average Population in Rebel Enclave=
+	65000
+	~	People
+	~		|
+
+Net Birth Rate=
+	0.0241
+	~	People/People/Year
+	~		|
+
+Net Births=
+	Net Birth Rate*Syrian Population
+	~	People/Year
+	~		|
+
+Contagion=
+	IF THEN ELSE(Protests<1, 0 , Contagion Rate*Protests)
+	~	Protests/Year
+	~		|
+
+Contagion Rate=
+	1.37
+	~	Protests/Protests/Year
+	~		|
+
+Cease Fire Rate=
+	0.201
+	~	Battles/Battles/Year
+	~		|
+
+Impact of Violence=
+	0.0794
+	~	Protests/(Protests*Battles)/Year
+	~		|
+
+Initial Population=
+	2.14e+007
+	~	People
+	~		|
+
+Initial Refugees=
+	18500
+	~	People
+	~		|
+
+Initial Immigrants=
+	0
+	~	People
+	~		|
+
+Initial Protests=
+	50
+	~	Protests
+	~		|
+
+Initial Battles=
+	1
+	~	Battles
+	~		|
+
+Death Rate From Battles=
+	0.0133
+	~	People/(People*Battles)/Year
+	~		|
+
+Quelling=
+	Impact of Violence*Battles*Protests
+	~	Protests/Year
+	~		|
+
+Regime Response=
+	Regime Response Rate*Battles*Protests
+	~	Battles/Year
+	~		|
+
+Regime Response Rate=
+	0.00481
+	~	Battles/(Protests*Battles)/Year
+	~		|
+
+Protests= INTEG (
+	Contagion-Quelling,
+		Initial Protests)
+	~	Protests
+	~		|
+
+Successful Immigrants=
+	Refugees*Immigrant Acceptance Rate
+	~	People/Year
+	~		|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 2018
+	~	Year
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 2010
+	~	Year
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 
+        TIME STEP
+	~	Year [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 0.0078125
+	~	Year [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Population Movement
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|96,96,100,0
+10,1,Syrian Population,376,324,78,27,3,131,0,0,0,0,0,0
+10,2,Refugees,785,325,63,30,3,131,0,0,0,0,0,0
+12,3,48,115,317,10,8,0,3,0,0,-1,0,0,0
+1,4,6,1,4,0,0,22,0,0,0,-1--1--1,,1|(252,321)|
+1,5,6,3,100,0,0,22,0,0,0,-1--1--1,,1|(159,321)|
+11,6,48,200,321,6,8,34,3,0,0,1,0,0,0
+10,7,Net Births,200,339,39,10,40,131,0,0,-1,0,0,0
+1,8,10,2,4,0,0,22,0,0,0,-1--1--1,,1|(649,324)|
+1,9,10,1,100,0,0,22,0,0,0,-1--1--1,,1|(509,324)|
+11,10,924,571,324,6,8,34,3,0,0,1,0,0,0
+10,11,Net Departures,571,346,70,14,40,131,0,0,-1,0,0,0
+10,12,Initial Population,267,416,52,11,8,3,0,0,0,0,0,0
+10,13,Initial Refugees,697,251,48,11,8,3,0,0,0,0,0,0
+10,14,Net Birth Rate,144,407,51,13,8,131,0,0,0,0,0,0
+10,15,Death Rate From Battles,632,94,65,22,8,131,0,0,0,0,0,0
+10,16,Average Population in Rebel Enclave,656,140,70,19,8,3,0,0,0,0,0,0
+1,17,14,7,1,0,0,0,0,64,0,-1--1--1,,1|(209,388)|
+1,18,1,7,1,0,0,0,0,64,0,-1--1--1,,1|(319,375)|
+10,19,Average Time to Leave Because of Battles,456,502,75,19,8,131,0,0,0,0,0,0
+1,20,19,11,1,0,0,0,0,64,0,-1--1--1,,1|(567,443)|
+1,21,16,10,1,0,0,0,0,64,0,-1--1--1,,1|(654,206)|
+10,22,Battles,572,207,59,11,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,23,22,10,1,0,0,0,0,64,0,-1--1--1,,1|(582,246)|
+10,24,Immigrants,1082,320,65,32,3,131,0,0,0,0,0,0
+1,25,27,24,4,0,0,22,0,0,0,-1--1--1,,1|(976,323)|
+1,26,27,2,100,0,0,22,0,0,0,-1--1--1,,1|(886,323)|
+11,27,636,930,323,6,8,34,3,0,0,1,0,0,0
+10,28,Successful Immigrants,930,350,59,19,40,3,0,0,-1,0,0,0
+1,29,2,28,1,0,0,0,0,64,0,-1--1--1,,1|(836,390)|
+10,30,Immigrant Acceptance Rate,1036,435,56,19,8,3,0,0,0,0,0,0
+1,31,30,28,1,0,0,0,0,64,0,-1--1--1,,1|(970,417)|
+1,32,13,2,0,0,0,0,0,64,1,-1--1--1,,1|(724,273)|
+10,33,Initial Immigrants,1094,238,65,27,8,131,0,0,0,0,0,0
+10,34,Battles,1123,645,59,11,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,35,Population Time Series,207,669,52,19,8,3,0,0,0,0,0,0
+10,36,Actual Population,329,693,56,11,8,3,0,0,0,0,0,0
+10,37,Time,586,646,26,11,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,38,35,36,1,0,0,0,0,64,0,-1--1--1,,1|(266,665)|
+1,39,37,36,1,0,0,0,0,64,0,-1--1--1,,1|(470,623)|
+12,40,48,775,174,10,8,0,3,0,0,-1,0,0,0
+1,41,43,2,4,0,0,22,0,0,0,-1--1--1,,1|(775,270)|
+1,42,43,40,100,0,0,22,0,0,0,-1--1--1,,1|(775,208)|
+11,43,48,775,240,8,6,33,3,0,0,4,0,0,0
+10,44,Net Refugee Births,843,240,60,11,40,3,0,0,-1,0,0,0
+10,45,Net Birth Rate,837,126,55,11,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,46,2,44,1,0,0,0,0,64,0,-1--1--1,,1|(831,285)|
+1,47,45,44,1,0,0,0,0,64,0,-1--1--1,,1|(866,170)|
+10,48,Actual Refugees,803,681,51,11,8,3,0,0,0,0,0,0
+10,49,Refugee Time Series,936,658,44,19,8,3,0,0,0,0,0,0
+1,50,37,48,1,0,0,0,0,64,0,-1--1--1,,1|(649,636)|
+1,51,49,48,1,0,0,0,0,64,0,-1--1--1,,1|(886,655)|
+1,52,33,24,1,0,0,0,0,64,1,-1--1--1,,1|(1087,262)|
+10,53,Peacekeepers,764,556,54,11,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,54,Available Peacekeepers,1129,702,50,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,55,Deaths From Battles,428,141,48,25,3,131,0,0,0,0,0,0
+1,56,58,55,4,0,0,22,0,0,0,-1--1--1,,1|(431,197)|
+1,57,58,1,100,0,0,22,0,0,0,-1--1--1,,1|(431,268)|
+11,58,892,431,234,8,6,33,3,0,0,4,0,0,0
+10,59,Combatant Deaths,474,234,35,19,40,131,0,0,-1,0,0,0
+1,60,15,59,1,0,0,0,0,64,0,-1--1--1,,1|(542,130)|
+1,61,16,59,1,0,0,0,0,64,0,-1--1--1,,1|(534,182)|
+1,62,22,59,1,0,0,0,0,64,0,-1--1--1,,1|(525,258)|
+10,63,Initial Deaths from Battles,545,49,47,28,8,131,0,0,0,0,0,0
+1,64,63,55,0,0,0,0,0,64,1,-1--1--1,,1|(490,92)|
+1,65,12,1,0,0,0,0,0,64,1,-1--1--1,,1|(306,382)|
+10,66,Actual Deaths in Conflict,601,721,77,14,8,131,0,0,0,0,0,0
+10,67,Deaths in Conflict Time Series,447,706,56,19,8,131,0,0,0,0,0,0
+1,68,67,66,1,0,0,0,0,64,0,-1--1--1,,1|(509,688)|
+1,69,37,66,1,0,0,0,0,64,0,-1--1--1,,1|(602,683)|
+10,70,Normal Immigration Rate,1230,468,55,19,8,3,0,0,0,0,0,0
+1,71,70,30,1,0,0,0,0,64,0,-1--1--1,,1|(1128,488)|
+10,72,Deaths From Protests,319,141,46,26,3,131,0,0,0,0,0,0
+1,73,75,72,4,0,0,22,0,0,0,-1--1--1,,1|(322,197)|
+1,74,75,1,100,0,0,22,0,0,0,-1--1--1,,1|(322,268)|
+11,75,876,322,233,8,6,33,3,0,0,2,0,0,0
+10,76,Protester Deaths,266,233,48,24,40,131,0,0,-1,0,0,0
+10,77,Average Population in Rebel Enclave,127,162,75,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,78,Death Rate From Protests,130,115,48,19,8,3,0,0,0,0,0,0
+10,79,Protests,112,225,39,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,80,78,76,1,0,0,0,0,64,0,-1--1--1,,1|(178,119)|
+1,81,77,76,1,0,0,0,0,64,0,-1--1--1,,1|(191,176)|
+1,82,79,76,1,0,0,0,0,64,0,-1--1--1,,1|(167,212)|
+10,83,Protests,370,409,39,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,84,Average Time to Leave Because of Protests,367,456,75,19,8,3,0,0,0,0,0,0
+1,85,83,11,1,0,0,0,0,64,0,-1--1--1,,1|(439,408)|
+1,86,84,11,1,0,0,0,0,64,0,-1--1--1,,1|(486,434)|
+10,87,Initial Deaths from Protests,201,51,51,25,8,131,0,0,0,0,0,0
+1,88,87,72,1,0,0,0,0,64,1,-1--1--1,,1|(276,73)|
+10,89,Normal Time,593,800,42,11,8,3,0,0,0,0,0,0
+1,90,89,48,1,0,0,0,0,64,0,-1--1--1,,1|(736,761)|
+1,91,89,66,1,0,0,0,0,64,0,-1--1--1,,1|(583,782)|
+1,92,89,36,1,0,0,0,0,64,0,-1--1--1,,1|(429,773)|
+10,93,Total Deaths from Conflict,382,43,47,21,8,131,0,0,0,0,0,0
+1,94,72,93,1,0,0,0,0,64,0,-1--1--1,,1|(308,107)|
+1,95,55,93,1,0,0,0,0,64,0,-1--1--1,,1|(444,92)|
+1,96,24,30,1,0,0,0,0,64,0,-1--1--1,,1|(1085,371)|
+10,97,Compassion Fatigue Effect,903,474,44,19,8,3,0,0,0,0,0,0
+10,98,Compassion Fatigue Threshold,1220,384,61,19,8,3,0,0,0,0,0,0
+1,99,98,30,1,0,0,0,0,64,0,-1--1--1,,1|(1164,426)|
+1,100,97,30,1,0,0,0,0,64,0,-1--1--1,,1|(971,486)|
+10,101,Repatrition Rate,737,415,54,19,8,3,0,0,0,0,0,0
+10,102,Cease Fires,530,554,47,11,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,103,Effect of Peacekeeping,645,546,45,19,8,3,0,0,0,0,0,0
+10,104,Required Peacekeepers per Cease Fire,775,490,66,27,8,131,0,0,0,0,0,0
+10,105,Repatriation Mutliplier,631,429,44,19,8,3,0,0,0,0,0,0
+1,106,102,105,1,0,0,0,0,64,0,-1--1--1,,1|(559,473)|
+1,107,103,105,1,0,0,0,0,64,0,-1--1--1,,1|(627,498)|
+1,108,104,105,1,0,0,0,0,64,0,-1--1--1,,1|(695,473)|
+1,109,53,105,1,0,0,0,0,64,0,-1--1--1,,1|(673,508)|
+1,110,101,11,1,0,0,0,0,64,0,-1--1--1,,1|(699,382)|
+1,111,105,11,1,0,0,0,0,64,0,-1--1--1,,1|(634,396)|
+1,112,2,11,1,0,0,0,0,64,0,-1--1--1,,1|(658,298)|
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Violence Level
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|96,96,100,0
+10,1,Battles,449,298,56,34,3,131,0,0,0,0,0,0
+10,2,Protests,445,461,55,30,3,131,0,0,0,0,0,0
+12,3,48,236,467,10,8,0,3,0,0,-1,0,0,0
+1,4,6,2,4,0,0,22,0,0,0,-1--1--1,,1|(360,463)|
+1,5,6,3,100,0,0,22,0,0,0,-1--1--1,,1|(282,463)|
+11,6,48,325,463,6,8,34,3,0,0,1,0,0,0
+10,7,Contagion,325,482,33,11,40,3,0,0,-1,0,0,0
+12,8,48,671,456,10,8,0,3,0,0,-1,0,0,0
+1,9,11,8,4,0,0,22,0,0,0,-1--1--1,,1|(623,456)|
+1,10,11,2,100,0,0,22,0,0,0,-1--1--1,,1|(537,456)|
+11,11,48,580,456,6,8,34,3,0,0,1,0,0,0
+10,12,Quelling,580,475,27,11,40,3,0,0,-1,0,0,0
+12,13,48,222,299,10,8,0,3,0,0,-1,0,0,0
+1,14,16,1,4,0,0,22,0,0,0,-1--1--1,,1|(352,299)|
+1,15,16,13,100,0,0,22,0,0,0,-1--1--1,,1|(266,299)|
+11,16,48,306,299,6,8,34,3,0,0,1,0,0,0
+10,17,Regime Response,306,318,56,11,40,3,0,0,-1,0,0,0
+10,18,Regime Response Rate,196,199,57,19,8,3,0,0,0,0,0,0
+10,19,Cease Fire Rate,667,196,60,11,8,3,0,0,0,0,0,0
+10,20,Contagion Rate,161,565,49,11,8,3,0,0,0,0,0,0
+10,21,Impact of Violence,739,568,60,11,8,3,0,0,0,0,0,0
+1,22,18,16,1,0,0,0,0,64,0,-1--1--1,,1|(277,240)|
+1,23,2,17,1,0,0,0,0,64,0,-1--1--1,,1|(332,423)|
+1,24,1,17,1,0,0,0,0,64,0,-1--1--1,,1|(422,359)|
+1,25,1,11,1,0,0,0,0,64,0,-1--1--1,,1|(534,370)|
+1,26,2,12,1,0,0,0,0,64,0,-1--1--1,,1|(497,507)|
+1,27,21,12,1,0,0,0,0,64,0,-1--1--1,,1|(639,559)|
+1,28,20,7,1,0,0,0,0,64,0,-1--1--1,,1|(273,562)|
+10,29,Initial Battles,434,200,47,19,8,3,0,0,0,0,0,0
+10,30,Initial Protests,444,596,53,19,8,3,0,0,0,0,0,0
+1,31,30,2,1,0,0,0,0,64,1,-1--1--1,,1|(427,545)|
+1,32,2,7,1,0,0,0,0,64,0,-1--1--1,,1|(430,512)|
+10,33,Actual Battles,-169,91,44,11,8,3,0,0,0,0,0,0
+10,34,Violence Time Series,-23,36,46,19,8,3,0,0,0,0,0,0
+10,35,Time,9,133,26,11,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,36,34,33,1,0,0,0,0,64,0,-1--1--1,,1|(-88,44)|
+1,37,35,33,1,0,0,0,0,64,0,-1--1--1,,1|(-40,140)|
+10,38,Peacekeepers,1165,177,62,40,3,131,0,0,0,0,0,0
+12,39,48,944,179,10,8,0,3,0,0,-1,0,0,0
+1,40,42,38,4,0,0,22,0,0,0,-1--1--1,,1|(1068,179)|
+1,41,42,39,100,0,0,22,0,0,0,-1--1--1,,1|(988,179)|
+11,42,48,1028,179,6,8,34,3,0,0,1,0,0,0
+10,43,Net Deployment,1028,198,52,11,40,3,0,0,-1,0,0,0
+10,44,Peacekeeper Deployment Threshold,919,305,74,20,8,131,0,0,0,0,0,0
+10,45,Deployment Rate,968,382,55,11,8,3,0,0,0,0,0,0
+10,46,Available Peacekeepers,917,87,45,19,8,3,0,0,0,0,0,0
+1,47,45,43,1,0,0,0,0,64,0,-1--1--1,,1|(1054,342)|
+1,48,38,43,1,0,0,0,0,64,0,-1--1--1,,1|(1065,156)|
+1,49,46,43,1,0,0,0,0,64,0,-1--1--1,,1|(985,122)|
+10,50,Initial Peacekeepers,1129,65,45,19,8,3,0,0,0,0,0,0
+1,51,50,38,1,0,0,0,0,64,1,-1--1--1,,1|(1152,84)|
+10,52,Normal Time,-80,203,51,11,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,53,52,33,1,0,0,0,0,64,0,-1--1--1,,1|(-154,190)|
+1,54,1,43,1,0,0,0,0,64,0,-1--1--1,,1|(550,206)|
+1,55,44,43,1,0,0,0,0,64,0,-1--1--1,,1|(955,284)|
+10,56,Cease Fires,719,294,59,33,3,131,0,0,0,0,0,0
+1,57,59,56,4,0,0,22,0,0,0,-1--1--1,,1|(622,295)|
+1,58,59,1,100,0,0,22,0,0,0,-1--1--1,,1|(538,295)|
+11,59,380,578,295,6,8,34,3,0,0,1,0,0,0
+10,60,Standdowns,578,314,40,11,40,3,0,0,-1,0,0,0
+1,61,19,59,1,0,0,0,0,64,0,-1--1--1,,1|(626,221)|
+1,62,1,59,1,0,0,0,0,64,0,-1--1--1,,1|(541,261)|
+10,63,Initial Cease Fires,762,401,56,11,8,3,0,0,0,0,0,0
+1,64,63,56,1,0,0,0,0,64,1,-1--1--1,,1|(728,373)|
+1,65,29,1,0,0,0,0,0,64,1,-1--1--1,,1|(438,234)|
+///---\\\
+:GRAPH Population
+:TITLE Syrian Population and Refugees
+:SCALE
+:VAR Syrian Population
+:VAR Refugees
+
+:GRAPH Violence
+:TITLE Conflicts
+:SCALE
+:VAR Battles
+
+:GRAPH Violence_Fit
+:TITLE Violence Fit to Time Series Data
+:X-MIN 2010
+:X-MAX 2018
+:SCALE
+:VAR Actual Battles
+:VAR Battles
+
+:GRAPH Population_Fit
+:TITLE Population Fit to Time Series
+:X-MIN 2010
+:X-MAX 2018
+:SCALE
+:VAR Actual Population
+:Y-MIN 1e+007
+:Y-MAX 3e+007
+:VAR Syrian Population
+:Y-MIN 1e+007
+:Y-MAX 3e+007
+
+:GRAPH Refugee_Fit
+:TITLE Refugee Population Fit to Data Series
+:X-MIN 2010
+:X-MAX 2018
+:SCALE
+:VAR Actual Refugees
+:VAR Refugees
+
+:GRAPH People_Killed_Fit
+:TITLE Total Deaths in Conflict and Time Series
+:X-MIN 2010
+:X-MAX 2018
+:SCALE
+:VAR Actual Deaths in Conflict
+:VAR Total Deaths from Conflict
+
+:GRAPH immigration
+:TITLE Refugees and Immigrants
+:SCALE
+:VAR Refugees
+:VAR Immigrants
+
+:GRAPH Cease_Fires
+:TITLE Violence Level
+:SCALE
+:VAR Battles
+:VAR Cease Fires
+:L<%^E!@
+1:Baseline.vdf
+9:Baseline
+22:$,Dollar,Dollars,$s
+22:Hour,Hours
+22:Month,Months
+22:Person,People,Persons
+22:Unit,Units
+22:Week,Weeks
+22:Year,Years
+22:Day,Days
+23:0
+15:0,0,0,0,0,0
+19:100,0
+27:2,
+34:0,
+4:Time
+5:Actual Population
+35:Date
+36:YYYY-MM-DD
+37:2000
+38:1
+39:1
+40:0
+41:0
+24:2010
+25:2018
+26:2018
